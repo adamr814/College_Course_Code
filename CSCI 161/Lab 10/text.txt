@@ -1,0 +1,6 @@
+---RECEIPT---
+1's Shopping Cart -1
+Number of Items:11.1 1 @ $1 = $1.0
+-Item Description1
+<bound method ShoppingCart.print_total of <__main__.ShoppingCart object at 0x00000104E85F7CA0>>
+---RECIEPT---

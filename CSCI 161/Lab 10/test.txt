@@ -1,0 +1,9 @@
+---RECEIPT---
+
+John's Shopping Cart -1/12/12
+Number of Items:1
+1.Test 3 @ $2 = $6.0
+-Item Description: Test
+Cart total is: $6.0
+
+---RECIEPT---

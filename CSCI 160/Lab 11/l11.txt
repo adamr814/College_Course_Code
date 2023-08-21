@@ -1,0 +1,6 @@
+Scott:1
+Bob:10
+Sue:12
+Alex:14
+Alice:14
+Fred:22
