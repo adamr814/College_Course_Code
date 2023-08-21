@@ -1,0 +1,20 @@
+[10] The following codes find the first row of an n by n integer matrix named x that has nothing but zero values. Rewrite these codes without gotos in C language.
+
+for (i = 1; i <= n; i++) {
+	  for (j = 1; j <= n; j++)
+	    if (x[i][j] != 0)
+		goto reject;
+	  println ('First all-zero row is:', i);
+	  break;
+	reject:
+	}
+
+
+for(i=1; i<=n; i++){
+    for(j=1; j<=n; j++){
+        if(x[i][j] != 0){
+            i++;
+            j = 0;
+            continue;}
+    println("First all-zero row is: ", i);
+    break;}}

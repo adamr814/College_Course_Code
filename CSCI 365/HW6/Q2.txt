@@ -1,0 +1,53 @@
+[10] Rewrite the following code segment using a multiple-selection statement in the following languages:
+
+    if ((k == 1) || (k == 2)) j = 2 * k - 1
+	if ((k == 3) || (k == 5)) j = 3 * k + 1
+	if (k == 4) j = 4 * k - 1
+	if ((k == 6) || (k == 7) || (k == 8)) j = k – 2
+
+
+[5] C
+
+switch(k){
+    case1:
+    case2:
+        j = 2 * k - 1;
+        break;
+    case3:
+    case5:
+        j = 3 * k + 1;
+        break;
+    case4:
+        j = 4 * k - 1;
+        break;    
+    case6:
+    case7:
+    case8:
+        j = k - 2;
+        break;}
+
+
+[5] Ruby
+
+case k
+when 1..2
+    j = 2 * k - 1
+when 3, 5
+    j = 3 * k + 1
+when 4
+    j = 4 * k - 1
+when 6..8
+    j = k - 2
+end
+
+
+[5 optional] Python
+
+if k==1 or k==2:
+    j = 2 * k - 1
+elif k==3 or k==5:
+    j = 3 * k + 1
+elif k==4:
+    j = 4 * k - 1
+elif k==6 or k==7 or k==8:
+    j = k - 2

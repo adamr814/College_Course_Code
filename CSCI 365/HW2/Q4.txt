@@ -1,0 +1,8 @@
+input(a)
+input(b)
+input(c)
+total = a + b + c
+average = total / 3
+output(total)
+&&
+output(average)

@@ -1,0 +1,36 @@
+[10] Rewrite the following code segment using a loop structure in the following languages.  
+Assume all variables and constants are floating point type.
+
+k = (j + 13.0) / 27.0
+    loop:
+		if k > 10 then goto out
+		k = k + 1.2
+		i = 3 * k - 1
+		goto loop
+	  out: . . .
+
+[5] C  - using a for loop.
+
+float k, j;
+k = (j + 13)/27;
+for(k > 10){
+	k += 1.2;
+	j = 3 * k - 1;}
+return;
+
+
+[5] Ruby  - using a while loop.
+
+k = (j + 13)/27.0
+while k > 10
+	k = k + 1.2
+	j = 3 * k - 1
+end
+
+
+[5, optional] Python – use a proper loop structure
+
+float k = (j + 13)/27.0
+while(k > 10):
+	k = k + 1.2
+	j = 3 * k - 1

@@ -1,0 +1,1 @@
+Write a 'Hello World' python script, and run it in the interpreter.

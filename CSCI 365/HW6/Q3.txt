@@ -1,0 +1,30 @@
+[10] The following codes in C language. Rewrite these codes with no gotos and no breaks.
+
+j = -3;
+	for (i = 0; i < 3; i++) {
+	   switch (j + 2) {
+		case 3:
+		case 2: j--; break;
+		case 0: j += 2; break;
+		default: j = 0;
+	   }
+	   if (j > 0) break;
+	  j = 3 - i
+	  }
+
+
+int j = -3;
+for (i = 0; i < 3; i++) {
+	switch (j + 2) {
+	case 3:
+        continue;
+	case 2:                                             
+        j--;
+        continue;
+	case 0:
+        j += 2;
+        continue;
+	default:
+        j = 0;}
+    if (j > 0) continue;
+	j = 3 - i}
