@@ -1,0 +1,13 @@
+//Adam Roy
+
+1) string1
+2) 19
+3) 14
+
+//1 explanation: string1 comes first because string2 is overflowed into by string1's null char
+
+//2 explanation: this is the maximum number of chars excluding \0 that can fit into both
+// string1 and string2's memory allocation without breaking the memory bounds.
+       
+//3 explanation:this is the maximum number of chars excluding \0 that fit into string2's 
+// memory allocation.
