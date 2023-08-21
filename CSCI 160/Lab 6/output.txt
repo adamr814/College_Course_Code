@@ -1,0 +1,5 @@
+Entered Scores
+
+   100
+   100
+End of file
