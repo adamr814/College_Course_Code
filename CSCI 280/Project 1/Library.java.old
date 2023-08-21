@@ -1,0 +1,233 @@
+//Adam Roy
+//CSCI 280
+//Project 1
+
+import java.util.*;
+import java.util.Scanner;
+
+//Class book holds all information/makes creating book objects possible
+class Book{
+    //Declaring Variables
+    public String bookName;
+    public String authorName;
+    public String ISBN;
+    public boolean availability;
+    public int bookQuantity;
+
+    Scanner kb = new Scanner(System.in);
+    //Constructor for book class
+    public Book(){
+        System.out.println("Enter Book Title: ");
+        this.bookName = kb.nextLine();
+        System.out.println("Enter Name of Author: ");
+        this.authorName = kb.nextLine();
+        System.out.println("Enter the Book ISBN: ");
+        this.ISBN = kb.nextLine();
+        System.out.println("Enter the Number of Copies: ");
+        this.bookQuantity = kb.nextInt();}}
+    
+class Books{
+    //This piece creates an array of objects to store "books" in the library
+    Book libBooks[] = new Book[50];
+    public static int count;
+    Scanner kb = new Scanner(System.in);
+
+    //Menu display methods
+    public void dispMenu(){
+        String MenuString = "\n1: Enter Book Management\n" +
+        "2: Enter Subscriber Management\n" +
+        "3: Enter Borrowed Media Management\n" +
+        "4: Exit Program\n" +
+        "Please Enter an Option: ";
+        System.out.print(MenuString);}
+
+    public void dispSearchMenu(){
+        String SearchMenu = "\n1: Search by Title\n" +
+        "2: Search by ISBN";
+        System.out.print(SearchMenu);}
+    
+    public void dispBookMenu(){
+        String BookMenu = "\n1: Add a book to the system\n" +
+        "2: Search for a book in the system\n" +
+        "3: Change book details\n" +
+        "4: Inventory audit\n" +
+        "5: Remove book from system\n" +
+        "Please Enter an Option: ";
+        System.out.print(BookMenu);}
+
+    static void dispSubMenu(){
+        String BookMenu = "\n1: Add a subscriber\n" +
+        "2: Update subscriber information\n" +
+        "3: Remove subscriber\n" +
+        "4: Check current holdings\n" +
+        "Please Enter an Option: ";
+        System.out.print(BookMenu);}
+
+    static void dispBorrowMenu(){
+        String BookMenu = "\n1: Add a book to the system\n" +
+        "2: Search for a book in the system\n" +
+        "3: Inventory audit\n" +
+        "4: Remove book from system\n" +
+        "Please Enter an Option:";
+        System.out.print(BookMenu);}
+    
+    //Main methods/helper functions
+    public void addBook(Book b){
+        if(findByTitle(b.bookName) != null){
+            System.out.println("The book of this title already exists in the system");}
+        if(findByISBN(b.ISBN) != null){
+            System.out.println("This book already exists in the system");}
+        else{
+            libBooks[count] = b;
+            count++;}}
+    
+    private Book findByISBN(String title){
+        for(int i=0; i<count; i++){
+            if(libBooks[i].bookName.equalsIgnoreCase(title)){
+                return Book;}
+            
+        }
+    }
+}
+        /*/Getters for book class
+    public String getBookTitle(){
+        return this.BookTitle;}
+    public String getAuthor(){
+        return this.Author;}
+    public int getISBN(){
+        return this.ISBN;}
+    public int getCopies(){
+        return this.Copies;}
+
+    //Setters for book class
+    public void setBookTitle(String BookTitle){
+        this.BookTitle = BookTitle;}
+    public void setAuthor(String Author){
+        this.Author = Author;}
+    public void setISBN(int ISBN){
+        this.ISBN = ISBN;}
+    public void setCopies(int Copies){
+        this.Copies = Copies;}}
+
+//Class subscriber holds all information/makes creating subscriber objects possible
+class subscriber{
+    //Declaring variables
+    private String FirstName;
+    private String LastName;
+    private String Address;
+    private String Type;*/
+    
+    /*//Constructor for subscriber class
+    public subscriber(String FirstName, String LastName, String Address, String Type){
+        this.FirstName = FirstName;
+        this.LastName = LastName;
+        this.Address = Address;
+        this.Type = Type;}
+    
+    //Getters for subscriber class
+    public String getFirstName(){
+        return this.FirstName;}
+    public String getLastName(){
+        return this.LastName;}
+    public String getAddress(){
+        return this.Address;}
+    public String getType(){
+        return this.Type;}
+
+    //Setters for subscriber class
+    public void setFirstName(String FirstName){
+        this.FirstName = FirstName;}
+    public void setLastName(String LastName){
+        this.LastName = LastName;}
+    public void setAddress(String Address){
+        this.Address = Address;}
+    public void setType(String Type){
+        this.Type = Type;}}
+*/
+//class Borrow{}
+
+public class Library{
+    public static void main(String[] args){
+        Scanner kb = new Scanner(System.in);
+        System.out.print("*****  Library Management System  V1.1  *****\n\n");
+        Books obj = new Books();
+        int choice;
+        int searchChoice;
+        do{
+            obj.dispMenu();
+            choice = kb.nextInt();
+            switch(choice){
+            case 1:
+                obj.dispBookMenu();
+                searchChoice = kb.nextInt();
+                switch(searchChoice){
+                    case 1: //add book
+                        Book b = new Book();    
+                        obj.addBook(b);
+                        break;
+                    
+                    case 2: //search for book;
+                        String Search;
+                        obj.dispBookMenu();
+                        searchChoice = kb.nextInt();
+                        switch(searchChoice){
+                            case 1:
+                                System.out.print("Title Search: ");
+                                Search = kb.next();
+                                break;
+                            case 2:
+                                System.out.print("ISBN Search: ");
+                                Search = kb.next();
+                                break;
+                            default:
+                                System.out.print("Invalid Choice Returning to Main Menu");
+                                break;
+                        
+
+                    //case 3: //change details;
+                        //Use the setters to change the details here
+                        //Also use the search function from earlier to look for a certain book
+                    
+                    //case 4: //inventory audit;
+                        //use a simple function to get all details from objects and then display them to screen
+
+
+                    //case 5: //remove book;
+                        //use a setter to set all values to null or none
+                        //or find a built in function to delete objects
+                    
+                    default:
+                    System.out.print("Invalid Choice Returning to Main Menu");
+                    break;
+                    //invalid input
+                } break;}
+            /*case 2:
+                printSubMenu();
+                choice = kb.nextInt();
+                switch(choice){
+                    case 1:
+                    System.out.println("Enter First Name: ");
+                    String FirstName = kb.next();
+                    System.out.println("Enter Last Name: ");
+                    String LastName = kb.next();
+                    System.out.println("Enter Address: ");
+                    String Address = kb.next();
+                    System.out.println("Enter Type (Professor or Student): ");
+                    String Type = kb.next();
+                    subscriber subObj = new subscriber(FirstName, LastName, Address, Type);
+                    break;
+                    //add subscriber
+                    
+                    //case 2:
+                    //search for subscriber;
+                    
+                    //case 3:
+                    //change details;
+                }
+            case 3:
+            case 4:
+            case 5:*/
+            default:
+                System.out.println("Please Choose a valid option");}}
+        while(choice != 5);
+    kb.close();}}

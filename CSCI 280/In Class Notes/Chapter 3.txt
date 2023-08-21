@@ -1,0 +1,97 @@
+- Instance variables are the variables declared in classes
+- Instance variables are not automatically initalized, you get an error when compiling
+- You can define as many methods as you want in a class
+- Method is a piece of the program the performs an action specified by the code within.
+    - data type for a variable
+    - data type, name -> variable
+    - modifier, return types, method name(data type a, data type b, ...)
+    
+    ex. float calcAVG(int a, int b){
+        code...
+    }
+
+- access modifiers and non-access modifiers
+    - access has three types (private public and protected)
+    - non has static types
+
+ex. 
+class CsCourse{
+    //Attributes
+    int courseId;
+    int courseCredit;
+    String courseInstructor
+
+    CsCourse(){ // now that its declared it will output data now
+        //is method so needs curly braces
+        courseId = 280;
+        courseCredit = 6;
+        courseInstructor = "Austin" //I Guess...
+        //used to display 0 0 null
+        //now updates the information
+        String courseTerm = "Spring"; //Currently not outputting anything because its not told to print
+    }
+
+    public void displayDetails(){
+        System.out.println("Course Details" + courseId + courseCredit + courseInstructor + courseTerm); //after course term is added here its called but its not a local variable in the constructor so it errors out.
+        //
+    }
+
+
+    public static void main (String[] args){
+        System.out.println("Welcome to your program");
+        int courseId;
+        CsCourse myCourse = new CsCourse(); <- cant call it if it's not declared
+        myCourse.displayDetails();
+        //myCourse.courseId = 280;
+        
+        System.out.println("Program done"); //Constructor builds all of the objects
+    }
+}
+
+
+- three types of constructors
+- name of the constructor has to be the same name as the class
+
+- getters and setters they are made as a part of a class
+public int getCourseId(){
+    return courseId;
+}
+public void setCourseId(int id){
+    courseId = id;
+}
+
+
+class CsCourses{
+    private int courseId;
+    private int courseCredit;
+    private StringInstructor;
+
+    CsCourses(){
+        courseId = 0;
+        courseCredit = 123;
+        courseInstructor = "john";
+    }
+    CsCourses(int id, int credit, String instructor){
+        courseId = id;
+        courseCredit = credit;
+        courseInstructor = instructor;
+    }
+    //Getters
+    public int getCourseId(){
+        return courseId;
+    }
+    //Setters
+    public void setCourseId(){
+        courseid = id;
+    }
+
+    public void displayDetails(){
+        System.out...();
+    }
+}
+
+class CsCourse{
+    public static void main
+}
+
+this. is useful for eliminating confusion between method object names
