@@ -1,0 +1,132 @@
+*** 8/22/23 ***
+
+Basic concepts:
+automaton - a formal construct that accepts input and produces output, temp storage and can make decisions
+    the abstract mathematical model of a modern computer
+
+formal language - a set of sentences formed from a set of symbols according for formal rules
+
+grammar - a set of rules used for generating the sentences in a formal language
+
+** computability ** - the types of problems that computers can solve in principal
+
+** complexity ** - the types of problems that can be solved
+    time / space complexity
+    time - how much time does it take
+    space complexity - how much memory does it take
+
+learning objectives:
+define the 3 basic concepts in theory of computation
+- machine; automaton, turing machine
+
+- formal language; regular language, context-free language etc.
+
+- grammar; regular grammar, context-free grammar etc.
+
+- evaluate expressions involving operations on strings and languages
+- generate strings from simple grammars
+- construct grammars to generage simple languages
+
+- review some main ideas from finite mathematics and establish the notation used in the text
+- inportant is the proof techniques
+    proof by deduction, introduction, or by contradiction
+
+mathematical preliminaries:
+- set basic notation, operations (union, intersection difference and complementation), disjoint sets, power set, partitions
+
+- functions and relations: domain, range, total function, partial function, order or magnitude, equivalance equations.
+    f(a) = b
+    f(a2) != c
+    f(a2)  = b
+
+- graphs and trees: vertices, edges, walk, path, simple path, cycle, loop, root vertex, partent, child, leaves, depth, height
+
+- proof techniques: proof by deduction, proof by induction, proof by contradiction
+    - a proof where a statement is proved to be true based on well-known mathematical principals (establishing
+    facts through reasoning or making conclusions about a particular instance be reffering to a general rule or princial)
+
+    - proof by deduction is the demonstation that something is true by showing that it must be true for all instances
+    - hence it is not sufficneitn to check 
+
+    prove (n + 1)^2 = n^2 = n + (n + 1)
+
+    n^2 + 2n + 1 - n^2 -> 2n + 1 
+    choose any two consecutive integers n and n+1
+    then take the squares of the integers
+    n^2 and (n+1)^2 = n^2 + 2n + 1
+    
+    the difference 
+
+    - proof by induction: a proof by which the truth of a number of statements can be inferred from the truth of a few specific instances
+    - suppose we have a sequence of statements p1 p2...
+    and we want to prove pk to be true for all k >= 1
+    suppose the following holds
+
+    1: for some k >= 1 the starting statement(s) p1, (p2, ..., pk) are true
+    2: the problem is s.t. for any n >= k, the truths of p1, p2, pn imply the truth of pn+1
+
+    use induction to show that every statment in the sequence is true
+        base case:
+            for some k >= 1 the starting statements p1, ... is true
+        inductive hypothesis:
+            assume that pi p2 pn n >= k >= 1 are true
+        inductive step:
+            prove pn+1 is true using inductive hypothesis and base case therefore the given statement pk is true for all k >= 1
+
+    a binary tree has height h has at most 2^h leaves 
+  0       0
+  1      / \
+  2     0   0 etc...
+
+    proof by induction: let l(h) <= 2^h
+    Basis: h = 0
+    l(0) = 1 = 2^0 since the tree of height 0 has root only it has at most one leaf
+    l(h) <= 2^h
+
+    inductive step lets prove that a binary tree of height h+1 has at most 2^h+1 leaves
+
+    to get a binary tree of height h+1 from one of height h we can create it by merging at most two binary trees Th and Tr of height h adding
+    a new root
+
+    thus l(h + 1) = l(Th) + l(Tr) = l(h) + l(h) = 2*l(h)
+    hence l(h + 1) = 2*l(h) <= 2 * 2^h = 2^h+1 by inductive hypothesis
+    therefore l(h) <= 2^h for all h >= 0
+
+    Proof by contradiction: a proof the determines the trugh of a statement by assuming the proposition is false then working to show it falsity
+    until the result of that assumption is a contradiction
+
+    example 1.7 a rational number is a number that can be expressed as the ratio of two integers n and m so that n and m have no common factor
+    a real number that is not mational is said to be irrational show that sqrt(2) is irrational
+
+    proof: assume that sqrt(2) is a rational number so that it can be written as sqrt(2) = n/m where n and m are integers with no common factor
+    then (sqrt(2))^2 = (n/m)^2 <=> 2 = n^2/m^2 <=> 2m^2 = n^2 thus n^2 is even
+    it implies that n is even so that we can write n = 2k
+    thus 2m^2 = n^2 <=> 2m^2 = (2k)^2 <=> m^2 = 2k^2 hence m is even
+
+    contradiction to our assumption that n and m has no common factor
+    therefore such m and n cannot exist and is not a rational number
+
+    a disproof by counter-example may also belong to proof by contradiction
+
+    example: disprove that for any a, b set z if a^2 = b^2 then a = base
+
+    by counter example z is the set of all positive or negative ints
+    
+    if an a and b s.t. a != b but a^2 = b^2 then the statement is disproved
+    choose any integer for a then choose b = -a
+    then a^2 = b^2 = (-a)^2, but a != b (= -a)
+
+Formal languages: Basic Concepts
+- alphabet; a set of symbols i.e Sigma = {a, b}
+
+- string; a finite sequence of symbols from Sigma, such as v = aba and w = abaaa
+    so any string u = set Sigma* cf a,b set Sigma
+    Empty string; lambda, sigma 
+    substring; prefix suffix
+
+- operations on strings;
+    concatenation
+    reverse
+    repetition
+
+- length of string
