@@ -25,10 +25,10 @@ define the 3 basic concepts in theory of computation
 
 - evaluate expressions involving operations on strings and languages
 - generate strings from simple grammars
-- construct grammars to generage simple languages
+- construct grammars to generate simple languages
 
 - review some main ideas from finite mathematics and establish the notation used in the text
-- inportant is the proof techniques
+- important is the proof techniques
     proof by deduction, introduction, or by contradiction
 
 mathematical preliminaries:
@@ -65,7 +65,7 @@ mathematical preliminaries:
     1: for some k >= 1 the starting statement(s) p1, (p2, ..., pk) are true
     2: the problem is s.t. for any n >= k, the truths of p1, p2, pn imply the truth of pn+1
 
-    use induction to show that every statment in the sequence is true
+    use induction to show that every statement in the sequence is true
         base case:
             for some k >= 1 the starting statements p1, ... is true
         inductive hypothesis:
@@ -197,7 +197,7 @@ Grammars definition:
 - a rule to describe the strings in a language i.e. a syntax of a language - not semantics
     - def 1.1: a grammar G is defined as a quadruple
         G = (V, T, S, P) where
-        V ~ a finite set of variavle or non-terminal symbols
+        V ~ a finite set of variable or non-terminal symbols
         T ~ a finite set of terminal symbols
         S ~ (set V) ~ a variable called start symbol
         P ~ a finite set of productions (i.e. rules)
@@ -211,7 +211,7 @@ Grammars derivation of strings:
 - beginning with the star symbol, strings are derived by repeatedly replacing variable symbols with the expression on the RHS of any
 applicable production
 
-- any applicable production can be used, in arbritrary order until the string contains no variable symbols
+- any applicable production can be used, in arbitrary order until the string contains no variable symbols
 
 ex. S ->^1 aSb, S ->^2 λ
 s ->^1 aSb (applying first production)

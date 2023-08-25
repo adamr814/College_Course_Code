@@ -1,0 +1,54 @@
+*** 8/25/23 ***
+
+Key point, try to gain the understanding of what the customer really wants rather than what we think it should be.
+
+Software development:
+    - the economies of all developed nations are dependent on software
+    - more and more systems are software controlled
+    - software engineering is connected with theories methods and tools for professional software development
+    - expenditure on software represents a significant fraction of GNP in all developed countries.
+
+Software Costs:
+    - software costs often dominate computer system costs. the costs of software on a pc is greater than the hardware cost
+    - software costs more to maintain than it does to develop. for systems with a long life, maintenance
+
+FAQ's about software development:
+    - 
+
+What is software:
+    - computer programs and associated documentation such as requirements, design models and user manuals
+    - software products may be developed for a particular customer or may be developed for a general market
+    - software products may be
+        - generic: developed to be sold to a range of different customers
+        - Bespoke (custom): developed for a single customer according to their specification
+
+What is software engineering:
+    - software engineering is an engineering discipline
+
+what is the difference between software engineering and computer science:
+    - computer science is concerned with theory and fundamentals, software engineering is concerned with the practicabilities of developing
+    and delivering useful software
+
+    - Computer science theories are still insufficient to act as a complete underpinning for software engineering (unlike e.g. 
+    physics and electrical engineering)
+
+What is the difference between software engineering and system engineering:
+    - system engineering is concerned with all aspects of computer-based systems development including hardware, software and process
+    engineering, software engineering is part of this process concerned with developing the software infrastructure
+
+What is a software process:
+    - a set of activities whose goal is the development or evolution of software
+    - generic activities in all software processes are:
+        - specification: wht the system should do and its development constraints
+        - development: production of the software system
+        - validation: checking that the software is what the customer wants
+        - evolution: changing the software in response to changing demands
+
+What is a software process model:
+    - a simplified representation of software process, presented from a specific perspective
+    - examples of process perspectives are
+        - workflow perspective: sequence of activities
+        - dataflow perspective: information flow
+        - role/ action
+
+    

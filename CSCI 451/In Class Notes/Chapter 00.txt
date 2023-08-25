@@ -28,7 +28,7 @@ unix introduction:
 
     aliases can be used to define new names for commonly used commands
 
-    links: links allow the creation of an alians or nickname for a file.
+    links: links allow the creation of an aliases or nicknames for a file.
     
     permissions:
         ls -la ~ gives all information of all files in directory
