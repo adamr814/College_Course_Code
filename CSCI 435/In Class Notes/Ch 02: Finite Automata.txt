@@ -1,0 +1,47 @@
+*** 8/24/23 ***
+
+Summary:
+- the simple aumaton, a finite state accepter of a language
+    - a finite of internal states and no other memeory
+    - it process trings and either accept or reject them
+    - a simple pattern recognition mechanism
+
+- Deterministic finite automaton/Accepter (DFA)
+    - Deterministic: the automaton has only one transition to the next state per symbol at one time
+    - regular language
+
+- Non-deterministic finite automaton/accepter (NFA)
+    - nondeterministic: several transitions for a choice of next state
+    - NFA explores all choices and makes no decision until all options have been analyzed
+    - NFA simplifies the solution of many problems
+
+- equivalance of DFA & NFA
+- minimization of DFA & NFA
+
+Learning objectives:
+- describe the components of DFA
+- state whether an input string is accepted by a DFA 
+- describe the language accepted by a DFA 
+- show that a particcular language is regular
+- describe the differences
+- state whether an input string is accepted by NFA
+
+DFA
+- formal definition 2.1: A DFA is defined by the quintuple M = (Q, Σ, ẟ, q0, F)
+where:
+    - Q ~ a finite set of internal states 
+    - Σ ~ a set of symbols called the input alphabet 
+    - ẟ ~ Q x E -> Q ∀ q ∈
+
+
+Processing input with DFA 
+- a DFA starts by processing the leftmost input symbbol of an input string with its control in state q0
+- the transition function determines the next state, based on the current state and input symbol 
+- the DFA continues processing input symbols until the end of the input string is reached
+- the input string is accepted if the automaton is in a final state after the last symbol is processed otherwise its rejected
+
+The language accepted by a DFA
+- for a given DFA the extended transion function ẟ* accepts a DFA state and an input string as input, the value of the function
+is the state of the automaton after the string is processed ẟ*: QxΣ* -> Q, s.t.
+    - ẟ* (q, λ) = q, ∀ q ∈ Q 
+    - ẟ* (q, wa) = ẟ(ẟ*(q, w), a), w ∈ Σ*, a ∈ Σ
