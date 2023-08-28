@@ -5,7 +5,7 @@ PROGRAM : HW1 (Calculating interest)
 AUTHOR  : Adam Roy
 *************************************************************************
 DESCRIPTION OF VARIABLES:
-r     | Anual interest rate        | Assume 0.22
+r     | Annual interest rate        | Assume 0.22
 B     | Amount borrowed            | Assume $5000
 P     | Payment amount             | Assume $500/mo
 I[o]  | Interest after first month | Formula: I[o] = (r/12)*B

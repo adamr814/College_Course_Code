@@ -1,0 +1,77 @@
+*** 8/28/23 ***
+
+Potential Test Questions: {}
+Processes:
+
+- process: a program in execution (including the memory, stack space, program counter (more than just the code)) in other words a verb
+
+- a process (heavyweight process) has the states (new, ready, running, waiting, terminating)
+    - includes program code, data, system resources, memory, program counter, register set, stack space
+    - can create child processes
+    - cannot be shared among different tasks
+    - both the os and users can execute processes
+
+- {process control block (PCB)}
+    a data structure containing
+        - process identifier
+        - the process state (new, ready etc...)
+        - process priority
+        - the program counter
+        - memory management information
+        - I/O status information
+        - accounting information
+        - CPU scheduling information
+        - Etc (OS dependant)
+
+    on a single CPU time-shared system, only 1 process can be executed at any given instance. Therefore we must occasionally swap the running process with
+    a waiting process - this swapping is called a {context switch} (in reality we only swap the PCBs)
+
+- {Process creation:}
+    - parent - creates sub-processes
+    - child - the sub-process
+
+    a child may get resources from its parent (forced to share the parents - prevents system overload) or from the OS
+    a child may run concurrently with the parent or the parent may wait for the child to finish.
+
+- {Process termination:}
+    parent can kill child processes. Reasons include:
+    - child exceeds resources allocated
+    - task assigned to child no longer needed
+    - parent is terminating (children should not exist without a parent). However, if a parent terminates before a child, the child may be adopted by the
+    "init" process (pid = 1) and is allowed to run to completion
+
+    child can terminate and optionally return data to parent
+
+- {defunct / zombie:}
+    when a child terminates, its resources are freed up, but if the process itself is held in the process table (as a defunct) until the parent calls
+    "wait" or "waitpid" on the child. However, if a parent fails to call wait (because its unexpectedly terminates), the process will be left in the
+    process table (as a zombie).
+
+    Defunct -> Dead child
+    Zombie  -> Unclaimed dead child
+
+    Modern OSs occasionally call wait() to remove any Defuncts / Zombies.
+
+- {Orphan:}
+    a parent (unexpectedly) terminates. The child is adopted by the "init" process (pid = 1) as exoected.
+    Orphaned -> Orphaned Child
+    note that an orphaned child is still alive!
+
+- Related UNIX commands:
+    fork - creates identical copy of the creating (parent) process. On completion, the fork commands returns a zero to the child and the child's PID to the parent
+    A-1 is returned to the parent if the fork failed
+
+    execv - loads a executable program into the memory space allocated by fork. The PID is not changed from that set by fork
+
+    waitpid - forces parent to wait for a child process to terminate
+
+    clone - creates identical copy of the creating (parent) process, like fork. Except, clone allows the child to share parts of the parent process
+    (depends on flags set). So, clone creates a pseudo-thread. On completion, the clone commands returns a zero to the child and the child's PID
+    to the parent. A-1 is returned to the parent if the clone failed.
+
+- cooperating:
+    - independent processes - processes cannot affect or be affected by another process
+    - cooperating processes - processes can affect or be affected bo another process
+
+    reasons for cooperative processes include:
+    - information sharing (file handles, data structure)

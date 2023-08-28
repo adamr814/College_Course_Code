@@ -14,7 +14,7 @@ http://undcemcs01.und.edu/~ronald.marsh/PROJECTS/PROJECTS.HTML
 
 Part 2:
 Add to the program a section that loads and parses the downloaded
-file extracting all of the project names. Your program must
+file extracting all of the ***project names.*** Your program must <<<
 generate a listing on the screen of the extracted project names 
 when it is run.
 
