@@ -1,0 +1,120 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "Calculator.Main",
+            "projectName": "College_Course_Code_a541d9ba"
+        },
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Bank",
+            "request": "launch",
+            "mainClass": "Bank",
+            "projectName": "College_Course_Code_a541d9ba"
+        },
+        {
+            "type": "java",
+            "name": "EmployeeMain",
+            "request": "launch",
+            "mainClass": "EmployeeMain",
+            "projectName": "College_Course_Code_a541d9ba"
+        },
+        {
+            "type": "java",
+            "name": "ExceptionBlock",
+            "request": "launch",
+            "mainClass": "ExceptionBlock",
+            "projectName": "College_Course_Code_a541d9ba"
+        },
+        {
+            "type": "java",
+            "name": "Holiday",
+            "request": "launch",
+            "mainClass": "Holiday",
+            "projectName": "College_Course_Code_a541d9ba"
+        },
+        {
+            "type": "java",
+            "name": "Library",
+            "request": "launch",
+            "mainClass": "Library",
+            "projectName": "College_Course_Code_a541d9ba"
+        },
+        {
+            "type": "java",
+            "name": "Person",
+            "request": "launch",
+            "mainClass": "Person",
+            "projectName": "College_Course_Code_a541d9ba"
+        },
+        {
+            "type": "java",
+            "name": "Program1",
+            "request": "launch",
+            "mainClass": "Program1",
+            "projectName": "College_Course_Code_a541d9ba"
+        },
+        {
+            "type": "java",
+            "name": "Program2",
+            "request": "launch",
+            "mainClass": "Program2",
+            "projectName": "College_Course_Code_a541d9ba"
+        },
+        {
+            "type": "java",
+            "name": "ReadWithBuffer",
+            "request": "launch",
+            "mainClass": "ReadWithBuffer",
+            "projectName": "College_Course_Code_a541d9ba"
+        },
+        {
+            "type": "java",
+            "name": "Savings",
+            "request": "launch",
+            "mainClass": "Savings",
+            "projectName": "College_Course_Code_a541d9ba"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "SimpleCalculator.Main",
+            "projectName": "College_Course_Code_a541d9ba"
+        },
+        {
+            "type": "java",
+            "name": "SwingTest",
+            "request": "launch",
+            "mainClass": "SwingTest",
+            "projectName": "College_Course_Code_a541d9ba"
+        },
+        {
+            "type": "java",
+            "name": "Task0301",
+            "request": "launch",
+            "mainClass": "Task0301",
+            "projectName": "College_Course_Code_a541d9ba"
+        },
+        {
+            "type": "java",
+            "name": "writeToFile",
+            "request": "launch",
+            "mainClass": "writeToFile",
+            "projectName": "College_Course_Code_a541d9ba"
+        }
+    ]
+}

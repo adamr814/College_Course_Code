@@ -4,6 +4,7 @@ Adam Roy
 Program: 1
 Due: Jan 25th 2023
 */
+package Assignment1;
 
 import java.util.Scanner;
 
