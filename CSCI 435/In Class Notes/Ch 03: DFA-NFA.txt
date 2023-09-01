@@ -1,0 +1,49 @@
+*** 8/31/23 ***
+
+Procedure: NFA with no λ transition to DFA Conversion
+1. Create DFA with an initial start state {q0} beginning with the start state q0
+2. Repeat 
+    - if the NFA input transition to a single state qk, replicate for {qk}
+    - if the NFA input transition leads to multiple states, create a new state in the DFA labeled {qi, ..., qj}, where qi, ..., qj are the
+    states to which the NFA transition can lead 
+    - if the NFA input transition is not defined, the corresponding DFA transition should lead to a trap state.
+        until no new states are created for all newly created DFA states
+3. any DFA state containing any qf ∈ F is labeled as a finite state
+4. (if the NFA accepts λ, label the start state of DFA as a final state)
+
+
+lambda closure (or back 3)
+    prior to constructing an equivalent DFA from an NFA, lets define a λ closure or ε closure of q' is Ʌ(q') (= E(q'))
+        = q' ∪ {q ∈ Q | q is reachable from q' through 0 or more λ transitions}
+        = q' ∪ {q ∈ Q | ∀ri; ∈ q', ∃r2, ..., rk ∈ Q, ri+1 is in delta(ri, λ), rk = 1}
+        1.e. the collection of states that are reachable from q' through 0 or λ transitions , including the members of q' themselves
+
+
+Summary
+- Two alternative methods for descibing regular languages:
+    regualr expressions and regular grammars
+- regular expressions are convenient in some applications because of their simple string form, but they are restricted and have no obvious extension to the
+more complicated languages
+- regular gramars, on the other hand, are just a spacial case of many different types of grammars
+
+Regular expressions
+- a concise way to describe some languages
+- definition 3.1: recursive definition of regular expressions for any alphabet sigma,
+    - empty set, lambda, and a elementOf Sigma  
+        primitive regular expressions
+    - if r1, r2 are regular expressions, then
+    - r1 + r2 : union
+    - r1 * r2 : concatenation
+    - r1^* star closure
+    - (r1) of regular expressions are also regular expression
+
+Languages associated with regular expressions
+    - a language L(r) denoted by any regular expression r
+    - assume that r1 and r2 are regular expressions:
+        1. emptySet is the regular expression denoting the empty set
+        2. lambda is the regular expression denoting {lambda}
+        3. for any a elementOf Sigma, a is the regular expression denoting {a}
+        4. the regular expression r1 + r2 denotes L(r1) union L(r2)
+        ...
+
+        

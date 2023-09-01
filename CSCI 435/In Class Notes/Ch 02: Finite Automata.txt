@@ -32,6 +32,8 @@ where:
     - Q ~ a finite set of internal states 
     - Σ ~ a set of symbols called the input alphabet 
     - ẟ ~ Q x E -> Q ∀ q ∈ Σ
+    - q0 set Q : the initial state
+    - F (⊆ Q): a set of the final states
 
 
 Processing input with DFA 
@@ -45,3 +47,64 @@ The language accepted by a DFA
 is the state of the automaton after the string is processed ẟ*: QxΣ* -> Q, s.t.
     - ẟ* (q, λ) = q, ∀ q ∈ Q 
     - ẟ* (q, wa) = ẟ(ẟ*(q, w), a), w ∈ Σ*, a ∈ Σ
+
+*** 8/29/23 ***
+
+the initial state is always denoted on a graph by the arrow pointing in
+the final state is always denoted on a graph by double circles
+
+- Def 2.2: the language accepted by a DFA M = (Q, Sigma, s, q0, F) is the set of all strings on sigma accepted by M 
+    i.e. the set of all strings  whose transition results in a final state
+
+    formally, L(M) = {w ∈ Σ* | s* (q0, w) ∈ F}
+
+- note the language rejected by a DFA is L(M) with a bar on top
+
+- Example 2.2: a DFA to accept the set of all strings on sigma = {a, b}, consisting of an arbitrary number of a's, followed
+by a single b, i.e. L = ({a^nb | n >= 0} = {a..ab})
+
+λ is an empty state
+
+Regular languages
+- finite automata accept a family of languages collectively known as regular languages
+- def 2.3: a language L is regular if and only if there exists a DFA, M, that accepts L, i.e. L = L(M)
+- to show that a language is regular one must construct a DFA to accept it
+- Example: show that L = {(ab)^na | n > 0} is regular
+    construct a DFA, M that accepts L 
+    L = {aba, ababa, abababa, ...}
+- regular languages have wide applicability in problems that involve scanning input strings in search of specific patterns
+- lexical analysis
+
+Nondeterministic Finite Automaton (NFA)
+- an automaton is nondeterministic if it has a choice of actions for given inputs
+- Def 2.4: A nondeterministic finite automata, NFA (or accepter, recognizer) is defined by the quintuple where Q, Σ, q0, F are defined as for DFA but
+ẟ: Q x (Σ ∪ λ) -> 2^Q (i.e. P(Q))
+
+- Example 2.7: a nondeterministic
+
+- Example 2.8: a NFA which contains both a λ-transition as well as undefined transitions
+ẟ(q0, λ) = {q2} and s(q0, 0) = ∅
+
+the language accepted by an NFA
+- for a given NFA, the value of the extended transition function s*(qi, w) is the set of all possible states for the control unit after
+processing w, having started in qi
+- ẟ* for the NFA in ex 2.8
+
+ẟ*(q0, 10) = {q0, q2}
+ẟ*(q0, 101) = {q1}
+ẟ*(q0, λ) = {q0, q2} cf
+
+- a string w is accepted if s*(q0, w) contains a final state
+- in ex 2.8 10 would be accepted by 101 would be rejected
+- Definition: the language accepted by a NFA M is the set of all accepted strings: L(M) = {w | ẟ*(q0, w) ∩ F != ∅}
+- The NFA in ex 2.8 accepts L = {(10)^n | n >= 0} <- (with this language)
+~ in example 2.8 there is a redundant part of the graph which doesn't really make sense so it can be removed to make a simpler graph.
+
+equivalence of DFA and NFA
+
+- does nondeterminism make it possible to accept languages that DFA cannot recognize?
+- theorem 2.2
+    let L be the language accepted by a NFA M/N = (Q, sigma, delta, q0, F)
+    then there exists a DFA M/D = (Q', sigma delta', q0', F')
+        where Q' set or equal P(Q), q0' = {q0}
+        F' set or equal P(Q/F)

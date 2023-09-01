@@ -159,7 +159,7 @@ Formal Languages: definitions
 Σ+ ~ a set of all non-empty strings formed by concatenating symbols in Σ
     In other words, Σ+ = Σ* - {λ}
 
-    a formal language is any subset of Σ*: upsidedown ∀ L ⊆ Σ*
+    a formal language is any subset of Σ*: ∀ L ⊆ Σ*
 
 Example 1.10: Σ = {a, b}
     L1 = {a^nb^n | n >= 0} and L2 = {ab, aa}        {}
