@@ -44,3 +44,70 @@ of lengthy delays
 - Eisenberg and McGuire - Presented (1972) a solution for the critical section problem for N Processes. Teh algorithm organized the processes into a circle
 
 - Lamport - presented the bakery (bakers) algorithm (1974) the algorithm uses the take a ticket method commonly found in bakeries, service counters, etc
+
+Interrupt disabling:
+ - on a uni-processor system, since only one program can be executing at a time, we could disable interrupts guaranteeing mutual exclusion
+
+Special Machine instructions:
+- a variety of multiple machine instruction pairs (which execute as a single atomic "instruction") have been postponed to manage critical sections, including:
+    1. set & test
+    2. Compare & swap
+    3. Exchange
+
+Using any of the above, we can easily modify the "second effort" algorithm to provide a good, but not perfect, solution (indefinite postponement
+is slightly possible).
+
+Semaphores:
+    - critical section solutions are not easily generalized to more complex synchronization problems. semaphores (dijkstra 1965) overcome this limitation
+
+    a semaphore is an integer variable that is accessed through 2 atomic operations:
+        Wait  : while (s <= 0) do; s--;
+        Signal: s++;
+
+    the above is an example of a spin-lock semaphore. a semaphore type that wastes cpu cycles spinning in the while-loop
+
+    - binary semaphore - can be 1 or 0
+    - counting semaphore - can be any integer. useful for allocating / sharing N identical resources to M concurrent processes (N <= M)
+    - semaphores can be used to manage critical section problems and cab be used to force a specific execution sequence of a set of processes 
+    - incorrect use of semaphores can result in processes being in their critical sections at the same time
+
+producer - consumer
+    producer - produces goods at one time, and passes the item to the consumer
+
+    consumer - receives goods, one at a time, from a producer
+
+    if their relative operating speeds are nicely matched - no problem, But, we cannot guarantee this, therefore we need
+    - a message passing method (handshaking)
+    - a fixed capacity storage facility (with message passing)
+    - an infinite capacity storage facility (message passing not needed)
+
+    approach 1 can be achieved using any mutual exclusion method, even our first approach will sort of work
+
+    approach 2 can be achieved using any mutual exclusion method, even out first approach will sort of work
+
+    approach 3 is not feasible
+
+Monitors:
+    - mutual exclusion methods and semaphores work but they have a number of weakness including 
+        it is difficult to express solutions to more complex concurrency control problems
+        - it is difficult to prove the correctness of a program using these methods
+        - it is easy to misuse these methods
+
+    Monitors are a higher-level construct that solves many of the problems associated with earlier mutual exclusion methods and semaphores.
+    characteristics of monitors include:
+    - monitors are concurrency construct that contains both the data and procedures required to perform the allocation of a shared resource
+    - monitors enforce information hiding
+    - monitors rigidly enforce mutual exclusion
+    - monitor processes waiting for a resource wait in a queue (free up CPU) until signaled bu another process that the resource is available
+    - monitor processes waiting have priority over any new processes
+    - monitors are a programming language construct so it is up to the compiler to enforce the mutual exclusion. therefore it is less likely that something
+    will go wrong (we assume the compiler is correct)
+
+Hoare vs Hansen Monitor
+    - the difference between Hoare and Hansen's approaches can be describe as follows: Consider a producer-consumer n-buffer process pair. The producer
+    finds the buffer full and does a wait. The consumer consumes one item and signals the producer to "wake-up" we now need some method to prevent the two
+    processes from being in the monitor at the same time
+
+    Hoare proposed that the awakened process (the producer) suspend the consumer process
+
+    Hansen proposed that the process sending the "wake-up" call exit the monitor immediately
