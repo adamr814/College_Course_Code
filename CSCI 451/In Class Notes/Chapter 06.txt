@@ -1,0 +1,136 @@
+*** 9/11/23 ***
+
+Chapter 6
+
+Uni-CPU scheduling
+
+Criteria:
+	many different scheduling criteria have been proposed. A few include:
+	- cpu utilization - we want to keep the cpu as busy as possible
+	- throughput - we want to maximize the number of processes being completed per unit time
+	- turnaround time - we want to minimize the time it takes for the job to be completed
+	- wait time - we want to minimize the time the process spends in the ready queue
+	- response time - we want to minimize the time between input of a command and the response
+	- variance - we want to minimize the variance in the response time
+
+We would like to achieve all of the above; that is seldom possible. So we settle for some average value. Furthermore, some of these may be obsolete. For example does it makes any sense to use cpu
+Utilization as a scheduling criteria
+
+Objectives:
+	scheduling objectives include:
+	- should be fair to all processes
+	- should attempt to service the maximum number of processes per unit time
+	- maximize number of interactive users receiving acceptable response times
+	- predictable
+	- minimize overhead
+	- balance resource use
+	- enforce priorities
+	- give preference to any process holding key resources
+	- avoid indefinite postponement - indefinite postponement can be as bad as deadlock
+	- give priority to well behaved processes
+	- graceful degradation
+
+Again we would like to achieve all of the above however the seldom possible
+
+Types:
+	1. Non-preemptive - once. Process has been given the CPU the CPU cannot be taken away from that process. However, the process can, but doesn't have to release the CPU while performing I/O
+	2. Preemptive - The CPU can be taken away by the OS. Characteristics of preemptive scheduling include:
+		- useful in systems where high-priority processes require rapid attention
+		- required in interactive systems
+		- preemption incurs overhead (context switching, memory requiring to hold jobs waiting in ready queue, mechanisms to precut resources held by a waiting process, and
+		CPU cycles lost to the scheduler.
+
+CPU I/O burst times:
+	CPU burst times can be of use to determine a \'93good\'94 time slice criteria. Some statistical methods include using the peak height, half peak height, and the peak base height.
+	I/O-burst times may also be of use
+
+Methods:
+	First-come first-served (FCFS), Characteristics include:
+	- simplest(simply a FIFO queue)
+	- wide variation in waiting times
+	- non-preemptive - which can cause a convoy effect
+	- not applicable to time-shared or interactive systems
+
+	Shortest-Job-First (SJF) - The job with the shortest next CPU-burst cycle is run first
+	Characteristics include:
+	- optimal in reducing the waiting time
+	- Difficult to determine shortest next CPU-burst cycle - the next CPU-burst cycle can be estimated using a moving average
+	- non-preemptive - the current job is allowed to finish, even if a (new) job with a shorter next CPU-Burst cycle arrives at the ready queue
+
+	Shortest-remaining time - Almost identical to the Shortest-Job-First method
+	characteristics include:
+	- preemptive - the current job is preempted if a (new) job with a shorter next CPU-burst cycle arrives at the ready queue
+
+	Priority - jobs are run based on priority. Characteristics include:
+	- job priority may be static or dynamic
+	- job priority may be determined internally (resource requirements) or externally (company policies)
+	- can be preemptive or non-preemptive
+	- can result in low priority jobs being starved
+
+	Deadline - jobs that are required to complete by a specific time are given priority
+	Characteristics include:
+	- complex - resource requirements need to be accurately specified by the programmer
+	- multiple deadline jobs can create problems/resource conflicts
+
+	Round-Robin (RR) - Processes are run for a maximum of 1 time-quantum. They are then preempted and place on the tail of the ready queue.
+	characteristics include:
+	- designed for time-shared systems
+	- similar to FCFS, but preemption is added to switch between processes
+	- a process may use less than the time-quantum if I/O is required
+	- average wait time is long, but average response time is short
+
+	Multi-level - a method that provides different levels of priority of different groups of users/job types
+	Characteristics include\
+	- each level may have a separate queue and may use a different scheduling method
+	- a master scheduler allocates system resources to each queue. It is common to use a priority method between the queues (no lower priority queued jobs run
+	until all higher priory queued jobs are completed)
+	or a round robin method between the queues (the higher priority quest jobs get more or longer time quantum than lower priority queued jobs)
+	
+	Multi-level feedback - similar to the multi-level except:
+	- jobs can migrate up to a higher priority queues as they age or can migrate down to a lower queue if they require too much CPU time
+
+	Highest response ration next (HRN) - corrects some of the weaknesses of the shortest-job-first methods:
+	- non-preemptive
+	- priority determined by -> priority = (time_waiting + service_time) / (service_time)
+
+	Linux - This algorithm is a credit based algorithm. Each process is given a certain number of credits. When a new task is to be run, the process with the most credits runs.
+	as as process runs, every time a timer interrupt occurs, the process losses one credit. When its credit count reaches 0, it is suspended and another process is chosen to run.
+
+	if no runnable processes have any credits Linux re-credits all (even non-runnable ones) of the processes according to:
+		credits = (held_credits / 2) + priority 
+	
+	This methods favors processes with high priority and processes that have not run in a long time, but are I/O bound (non I/O bound processes are not favored)
+
+Scheduling evaluation:
+	Deterministic modeling - uses a predetermined workload to determine system characteristics. The method is simple and fast and gives exact numbers for the cases tried, but is only useful
+	for demonstrative purposes (unless you run 100's of cases, but then you have a simulation)
+
+	Queueing models - use queueing statistical models. The method is useful in comparing scheduling methods. However, the classes of models that can be handled
+	are limited and the math is too complicated to develop a new model, So assumptions are made to simplify the math
+
+	Implementation - implementation of the scheduling method on a real system. The method is probably the worst evaluation method possible as it requires a working version of the scheduler in code.
+	Is dangerous, as it may have bugs in it, Is frustrating to users and the testers as the system will probably behave differently
+
+	if the system behaves differently, the users will (a known fact) adjust the ways in which they use the system.
+
+	Simulations - simulation of the scheduler in software is, perhaps the best approach. The method is fairly easy to implement (software packages exist for this purpose)
+	and provides statistics. All of the pertinent events (process arrival, size type - CPU driven, I/O driven, etc.) can all be randomly generated (using different distributions) and measurements taken
+	from the actual system may be used to tailor the distribution of events.
+
+	The quality of the simulation is affected by the quality of the random number generator
+
+	Simulations can be expensive to run (CPU time) as a good simulation will require many different distributions of data.
+
+Random Number Generators:
+	types:
+	- uniform distribution - when all numbers have the same probability of occurrence
+	- non-uniform distribution - when the numbers have different probabilities of occurrence (very common in real life). Question is "what are you trying to emulate?"
+
+	Most random numbers used in computer programs are pseudo-random, which means they are a generated in a predictable fashion using a mathematical formula.
+	properties:
+	- deterministic -> same seed gives same set of numbers
+	- efficient -> they can produce many numbers in a short time
+	- periodic -> the sequence will eventually repeat itself (modern periods are very long).
+
+	True random number generators extract randomness from physical phenomena (variations in somebody's mouse movements or in the amount of time between keystrokes) and introduce
+	it into a computer. You have to be careful about which source you choose as the OS may have its own impacts that you cannot account for.
