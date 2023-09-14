@@ -13,6 +13,7 @@ HW2
 using namespace std;
 
 //Declaring global variables
+#define NUM_THREADS 2
 const char* wordToFind1 = "easy";
 const char* wordToFind2 = "polar";
 int wordCount1 = 0;
@@ -22,8 +23,9 @@ pthread_mutex_t mutex2 = PTHREAD_MUTEX_INITIALIZER;
 
 
 void* worker1(void* arg) {
-    char* threadDat = (char*)arg;
-    char* token = strtok(threadDat, " ");
+    char* threadData = (char*)arg;
+    char* dataCopy = strdup(threadData);
+    char* token = strtok(dataCopy, " ");
     while(token != nullptr){
         if (strcmp(token, wordToFind1) == 0){
             pthread_mutex_lock(&mutex1);
@@ -32,12 +34,14 @@ void* worker1(void* arg) {
         }
         token = strtok(nullptr, " ");
     }
+    free(dataCopy);
     pthread_exit(nullptr);
 }
 
 void* worker2(void* arg) {
-    char* threadDat = (char*)arg;
-    char* token = strtok(threadDat, " ");
+    char* threadData = (char*)arg;
+    char* dataCopy = strdup(threadData);
+    char* token = strtok(dataCopy, " ");
     while(token != nullptr){
         if (strcmp(token, wordToFind2) == 0){
             pthread_mutex_lock(&mutex2);
@@ -46,6 +50,7 @@ void* worker2(void* arg) {
         }
         token = strtok(nullptr, " ");
     }
+    free(dataCopy);
     pthread_exit(nullptr);
 }
 
@@ -86,14 +91,21 @@ int main() {
 //This is the point in which threads are created and stuff starts to get weird
 
     //Create the threads and indicate what worker function to use and what data to use
-    pthread_t thread1, thread2;
+    pthread_t threads[NUM_THREADS];
 
-    pthread_create(&thread1, nullptr, worker1, (void*)fileData);
-    pthread_create(&thread2, nullptr, worker2, (void*)fileData);
+    for(int i = 0; i < NUM_THREADS; i++){
+        pthread_create(&threads[i], nullptr, worker1, (void*)fileData);
+    }
+    for(int i = 0; i < NUM_THREADS; i++){
+        pthread_join(threads[i], nullptr);
+    }
 
-    //Wait for all of the threads to complete their tasks before moving on
-    pthread_join(thread1, nullptr);
-    pthread_join(thread2, nullptr);
+    for(int i = 0; i < NUM_THREADS; i++){
+        pthread_create(&threads[i], nullptr, worker2, (void*)fileData);
+    }
+    for(int i = 0; i < NUM_THREADS; i++){
+        pthread_join(threads[i], nullptr);
+    }
 
     cout << "Occurrences of '" << wordToFind1 << "': " << wordCount1 << endl;
     cout << "Occurrences of '" << wordToFind2 << "': " << wordCount2 << endl;
