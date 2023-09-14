@@ -12,51 +12,34 @@ HW2
 #include <cstring>
 using namespace std;
 
-/*const char* wordToFind1 = "easy";
+//Declaring global variables
+#define NUM_THREADS 2 //****** This is problematic with compilers please read note at bottom ******
+const char* wordToFind1 = "easy";
 const char* wordToFind2 = "polar";
 int wordCount1 = 0;
-int wordCount2 = 0*/
+int wordCount2 = 0;
+
+pthread_mutex_t mutex1 = PTHREAD_MUTEX_INITIALIZER;
+pthread_mutex_t mutex2 = PTHREAD_MUTEX_INITIALIZER;
 
 
-void* worker1(void* arg) {
-    char* text = (char*)arg; //i think this is the problem.
-    cout << arg << endl;
-    string wordToFind = "easy";
-    int wordLength = wordToFind.length();
-    int count1 = 0;
-    for(int i = 0; text[i] != '\0'; i++){
-        int j;
-        for(j = 0; j < wordLength; j++){
-            if(text[i + j] != wordToFind[j]){
-                break;
-            }
+void* worker(void* arg) {
+    char* threadData = (char*)arg;
+    char* token = strtok(threadData, " ");
+    while(token != nullptr){
+        if (strcmp(token, wordToFind1) == 0){
+            pthread_mutex_lock(&mutex1);
+            wordCount1++;
+            pthread_mutex_unlock(&mutex1);
         }
-        if(j == wordLength){
-            count1 ++;
+        else if (strcmp(token, wordToFind2) == 0){
+            pthread_mutex_lock(&mutex2);
+            wordCount2++;
+            pthread_mutex_unlock(&mutex2);
         }
+        token = strtok(nullptr, " ");
     }
-    cout << "Thread " << pthread_self() << ": Word Occurrences = " << count1 << endl;
-    pthread_exit(NULL);
-}
-
-void* worker2(void* arg) {
-    char* text = (char*)arg;
-    string wordToFind = "polar";
-    int wordLength = wordToFind.length();
-    int count2 = 0;
-    for(int i = 0; text[i] != '\0'; i++){
-        int j;
-        for(j = 0; j < wordLength; j++){
-            if(text[i + j] != wordToFind[j]){
-                break;
-            }
-        }
-        if(j == wordLength){
-            count2 ++;
-        }
-    }
-    cout << "Thread " << pthread_self() << ": Word Occurrences = " << count2 << endl;
-    pthread_exit(NULL);
+    pthread_exit(nullptr);
 }
 
 int main() {
@@ -83,9 +66,7 @@ int main() {
     inputFile.seekg(0, ios::end);
     streampos fileSize = inputFile.tellg();
     inputFile.seekg(0, ios::beg);
-//test point
-    //cout << fileSize << endl;
-//end
+
     if(fileSize < 0){
         cerr << "Failed to determine the file size" << endl;
     }
@@ -94,27 +75,37 @@ int main() {
     char* fileData = new char[fileSize];
     inputFile.read(fileData, fileSize);
     inputFile.close();
-//test point
-    //for(int i = 0; fileData[i] != '\0'; i++){
-        //cout << fileData[i];}
-//end
+
+//This is the point in which threads are created and stuff starts to get weird
+
     //Create the threads and indicate what worker function to use and what data to use
-    pthread_t thread1, thread2;
-    int result1 = pthread_create(&thread1, 0, worker1, (void*)&fileData);
-    if (result1 != 0){
-        cerr << "Thread creation failed" << endl;
+    pthread_t threads[NUM_THREADS];
+
+    for(int i = 0; i < NUM_THREADS; i++){
+        pthread_create(&threads[i], nullptr, worker, (void*)fileData);
     }
-    int result2 = pthread_create(&thread2, 0, worker2, (void*)&fileData);
-    if(result2 != 0){
-        cerr << "Thread creation failed" << endl;
+    for(int i = 0; i < NUM_THREADS; i++){
+        pthread_join(threads[i], nullptr);
     }
 
-    //Wait for all of the threads to complete their tasks before moving on
-    pthread_join(thread1, NULL);
-    pthread_join(thread2, NULL);
+    cout << "Occurrences of the word '" << wordToFind1 << "' : " << wordCount1 << endl;
+    cout << "Occurrences of the word '" << wordToFind2 << "': " << wordCount2 << endl;
+
+    pthread_mutex_destroy(&mutex1);
+    pthread_mutex_destroy(&mutex2);
 
     //Cleaning up files and freeing up memory
     delete[] fileData;
-    //system("unlink download.txt");
+    system("unlink download.txt");
     return 0;
 }
+/*
+Known bugs:
+
+    Sometimes when changing the value of NUM_THREADS it messes up the count
+    I believe that it has something to do with the compiler overwriting the
+    compiled file but if compiled again it usually fixes it. I have tested
+    1-5 threads and 800 threads and all output the right amount of words
+    in the count but immediately after compiling it gives numbers that are
+    off (SOMETIMES) kinda weird...
+*/
