@@ -13,44 +13,32 @@ HW2
 using namespace std;
 
 //Declaring global variables
-#define NUM_THREADS 2
+#define NUM_THREADS 2 //****** This is problematic with compilers please read note at bottom ******
 const char* wordToFind1 = "easy";
 const char* wordToFind2 = "polar";
 int wordCount1 = 0;
 int wordCount2 = 0;
+
 pthread_mutex_t mutex1 = PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t mutex2 = PTHREAD_MUTEX_INITIALIZER;
 
 
-void* worker1(void* arg) {
+void* worker(void* arg) {
     char* threadData = (char*)arg;
-    char* dataCopy = strdup(threadData);
-    char* token = strtok(dataCopy, " ");
+    char* token = strtok(threadData, " ");
     while(token != nullptr){
         if (strcmp(token, wordToFind1) == 0){
             pthread_mutex_lock(&mutex1);
             wordCount1++;
             pthread_mutex_unlock(&mutex1);
         }
-        token = strtok(nullptr, " ");
-    }
-    free(dataCopy);
-    pthread_exit(nullptr);
-}
-
-void* worker2(void* arg) {
-    char* threadData = (char*)arg;
-    char* dataCopy = strdup(threadData);
-    char* token = strtok(dataCopy, " ");
-    while(token != nullptr){
-        if (strcmp(token, wordToFind2) == 0){
+        else if (strcmp(token, wordToFind2) == 0){
             pthread_mutex_lock(&mutex2);
             wordCount2++;
             pthread_mutex_unlock(&mutex2);
         }
         token = strtok(nullptr, " ");
     }
-    free(dataCopy);
     pthread_exit(nullptr);
 }
 
@@ -94,21 +82,14 @@ int main() {
     pthread_t threads[NUM_THREADS];
 
     for(int i = 0; i < NUM_THREADS; i++){
-        pthread_create(&threads[i], nullptr, worker1, (void*)fileData);
+        pthread_create(&threads[i], nullptr, worker, (void*)fileData);
     }
     for(int i = 0; i < NUM_THREADS; i++){
         pthread_join(threads[i], nullptr);
     }
 
-    for(int i = 0; i < NUM_THREADS; i++){
-        pthread_create(&threads[i], nullptr, worker2, (void*)fileData);
-    }
-    for(int i = 0; i < NUM_THREADS; i++){
-        pthread_join(threads[i], nullptr);
-    }
-
-    cout << "Occurrences of '" << wordToFind1 << "': " << wordCount1 << endl;
-    cout << "Occurrences of '" << wordToFind2 << "': " << wordCount2 << endl;
+    cout << "Occurrences of the word '" << wordToFind1 << "' : " << wordCount1 << endl;
+    cout << "Occurrences of the word '" << wordToFind2 << "': " << wordCount2 << endl;
 
     pthread_mutex_destroy(&mutex1);
     pthread_mutex_destroy(&mutex2);
@@ -118,3 +99,13 @@ int main() {
     system("unlink download.txt");
     return 0;
 }
+/*
+Known bugs:
+
+    Sometimes when changing the value of NUM_THREADS it messes up the count
+    I believe that it has something to do with the compiler overwriting the
+    compiled file but if compiled again it usually fixes it. I have tested
+    1-5 threads and 800 threads and all output the right amount of words
+    in the count but immediately after compiling it gives numbers that are
+    off (SOMETIMES) kinda weird...
+*/
