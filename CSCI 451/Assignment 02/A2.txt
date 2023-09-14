@@ -31,3 +31,5 @@ REQUIREMENTS:
 
 
 unlink the file after we are done with it
+
+potentially use posix threading
