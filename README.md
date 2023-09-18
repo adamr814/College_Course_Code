@@ -2,21 +2,22 @@
 ## _All Course Work & Code_
 
 Folder List
-| Course | Semester Taken |
-| ------ | ------ |
-| [CSCI 451] | Fall 2023 |
-| [CSCI 435] | Fall 2023 |
-| [CSCI 370] | Spring 2023 |
-| [CSCI 365] | ? |
-| [CSCI 363] | Fall 2023 |
-| [CSCI 330] | Fall 2022 |
-| [CSCI 280] | Spring 2022 |
-| [CSCI 266] | Spring 2023 |
-| [CSCI 256] | Spring 2023 |
-| [CSCI 242] | Fall 2022 |
-| [CSCI 161] | ? |
-| [CSCI 160] | ? |
-| [ME 200] | Spring 2020 |
+| Course | Course Name | Semester Taken |
+| ------ | ------ | ------ |
+| [CSCI 451] | Operating Systems 1 | Fall 2023 |
+| [CSCI 435] | Formal Languages & Automata | Fall 2023 |
+| [CSCI 370] | Computer Architecture | Spring 2023 |
+| [CSCI 365] | Org of Programming Languages| Fall 2022 |
+| [CSCI 363] | User Interface Design | Fall 2023 |
+| [CSCI 330] | Systems Programming | Fall 2022 |
+| CSCI 327 | Data Communications | Fall 2021 |
+| [CSCI 280] | Object Oriented Programming | Spring 2022 |
+| [CSCI 266] | Tools & Techniques of Computing | Spring 2023 |
+| [CSCI 265] | Intro to Programming Languages | Spring 2023 |
+| [CSCI 242] | Algorithms & Data Structures | Fall 2022 |
+| [CSCI 161] | Intro to Coding 2 | ? |
+| [CSCI 160] | Intro to Coding 1 | ? |
+| [ME 200] | Engineering Programming |  Spring 2020 |
 
 
 [//]: #
@@ -29,7 +30,7 @@ Folder List
    [CSCI 330]: <https://github.com/adamr814/College_Course_Code/tree/main/CSCI%20330>
    [CSCI 280]: <https://github.com/adamr814/College_Course_Code/tree/main/CSCI%20280>
    [CSCI 266]: <https://github.com/adamr814/College_Course_Code/tree/main/CSCI%20266>
-   [CSCI 256]: <https://github.com/adamr814/College_Course_Code/tree/main/CSCI%20256>
+   [CSCI 265]: <https://github.com/adamr814/College_Course_Code/tree/main/CSCI%20256>
    [CSCI 242]: <https://github.com/adamr814/College_Course_Code/tree/main/CSCI%20242>
    [CSCI 161]: <https://github.com/adamr814/College_Course_Code/tree/main/CSCI%20161>
    [CSCI 160]: <https://github.com/adamr814/College_Course_Code/tree/main/CSCI%20160>
