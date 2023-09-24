@@ -14,23 +14,31 @@ HW3
 
 //Declaring global variable and essential program dependencies
 int globalValue;
-std::mutex m;
-std::condition_variable cv;
+pthread_mutex_t m = PTHREAD_MUTEX_INITIALIZER;
+pthread_cond_t cv = PTHREAD_COND_INITIALIZER;
 bool mutexLock = false;
 
 void* threadFunc1(void* filename_ptr){
     const char* filename = static_cast<const char*>(filename_ptr);
     std::ifstream inputFile(filename);
     
-    if(inputFile.is_open)){
-        while(true){
-            int data;
-            if(inputFile >> data){
-                std::unique_lock
+    if(inputFile.is_open()){
+        int data;
+        while(inputFile >> data){
+            pthread_mutex_lock(&m);
+            while(mutexLock){
+                pthread_cond_wait(&cv, &m);
             }
+            globalValue = data;
+            mutexLock = true;
+            pthread_mutex_unlock(&m);
+            pthread_cond_signal(&cv);
         }
+        inputFile.close();   
+    } else {
+        std::cerr << "Error: Unable to open file " << filename << std::endl;
     }
-}
+    return nullptr;}
 
 void* threadFunc2(void* arg){
 
