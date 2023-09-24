@@ -18,9 +18,9 @@ pthread_mutex_t m = PTHREAD_MUTEX_INITIALIZER;
 pthread_cond_t cv = PTHREAD_COND_INITIALIZER;
 bool mutexLock = false;
 
-void* threadFunc1(void* filename_ptr){
-    const char* filename = static_cast<const char*>(filename_ptr);
-    std::ifstream inputFile(filename);
+void* threadFunc1(void* inFileName_ptr){
+    const char* inFilename = static_cast<const char*>(inFileName_ptr);
+    std::ifstream inputFile(inFilename);
     
     if(inputFile.is_open()){
         int data;
@@ -36,12 +36,24 @@ void* threadFunc1(void* filename_ptr){
         }
         inputFile.close();   
     } else {
-        std::cerr << "Error: Unable to open file " << filename << std::endl;
+        std::cerr << "Error: Unable to open file " << inFilename << std::endl;
     }
     return nullptr;}
 
-void* threadFunc2(void* arg){
+void* threadFunc2(void* outFileName_ptr){
+    const char* outFileName = static_cast<const char*>(outFileName_ptr);
+    std::ofstream outFile(outFileName);
 
+    //this section checks the state of the mutex and waits until the input value is passed
+    if(outFile.is_open()){
+        while(true){
+            pthread_mutex_lock(&m);
+            while(!mutexLock){
+                pthread_cond_wait(&cv, &m);
+            }
+    //from here we need to check if the global value is odd or even and print to output accordingly 
+        }
+    }
 }
 
 int main(){
@@ -55,7 +67,21 @@ if (!outFile.is_open()){
     std::cerr << "Failed to open the output file." << std::endl;
     return 1;
 }
-thread thread1(threadFunc1, inFileName);
+
+pthread_t thread1;
+pthread_t thread2;
+
+if(pthread_create(&thread1, nullptr, threadFunc1, (void*)inFileName.c_str()) != 0){
+    std::cerr << "Failed to create thread 1" << std::endl;
+    return 1;
+}
+if(pthread_create(&thread2, nullptr, threadFunc2, (void*)outFileName.c_str()) != 0){
+    std::cerr << "Failed to create thread 2" << std::endl;
+    return 1;
+}
+
+pthread_join(thread1, nullptr);
+pthread_join(thread2, nullptr);
 
 outFile.close();
 return 0;
