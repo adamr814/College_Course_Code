@@ -1,0 +1,113 @@
+Process synchronization:
+
+- processes are concurrent if they exist at the same time (includes processes in the ready queue and the cpu)
+- processes are simultaneous (and concurrent) if they are executing at the same time (requires multiple processors)
+- concurrent processes can function completely independent of each other, or they can be asynchronous (they require occasional synchronization and cooperation)
+- a cooperating process is one that can affect or be affected by other processes executing in the system, this may be due to the use of a common data structure or use
+of a parallel algorithm
+- since we cannot guarantee any particular ordering of the execution of the cooperating processes, the resulting values in the shared resource may be dependent on the 
+order of execution of the cooperating processes (race condition - a.k.a. lost update in database terms)
+
+{Race condition}:
+- Race condition (aka Lost Update) occurs when two processes that access the same resource have their operations interleaved in a way that makes the state/value of the
+shared resource incorrect
+
+- In some cases, it may be possible to use database serialization methods to insure data consistency. However, a direct application (i.e. 2 phase locking or graph
+theoretic methods) of this approach would probably add too much overhead to be feasible for this application
+
+- A simpler / more efficient approach is to synchronize the cooperating processes such that they cannot conflict. If they do conflict, we could end up in a state of
+deadlock. However, if we are not careful our synchronization method may result in starvation.
+
+{Critical Section}:
+- any portion of a program where shared data resources are accessed is called a critical section. The "other" portions are called the remainder section(s)
+
+- its is important to note that any given program may have several unrelated critical section and that these unrelated critical sections may require synchronization with
+other different processes
+
+Requirements - any solution to the critical section problem must satisfy the following:
+- {Mutual exclusion} - only 1 program may be execution in its critical section at any given time. Programs not executing in their critical sections can continue without
+interference
+- {progress} - processes operating outside their critical sections cannot prevent other processes from entering their critical sections
+- {bounded waiting} - processes cannot be indefinitely delayed from entering their critical section. if the process terminates while in its critical section some
+method must be provided that releases the mutual exclusion rights held by the terminated process
+- {performance} - no assumptions can be made about the relative performance of the involved programs
+
+- Marsh is allergic to potassium (his heart stops?)
+
+N-Process critical section
+- Dijkstra - the first (1965) to present a software solution for implementation of an n-process mutual exclusion. however his method allowed the possibility of
+indefinite postponement
+
+- knuth - presented (1966) a software solution that eliminated the possibility of indefinite postponement. However, his method did not prevent the possibility
+of lengthy delays
+
+- Eisenberg and McGuire - Presented (1972) a solution for the critical section problem for N Processes. Teh algorithm organized the processes into a circle
+
+- Lamport - presented the bakery (bakers) algorithm (1974) the algorithm uses the take a ticket method commonly found in bakeries, service counters, etc
+
+Interrupt disabling:
+ - on a uni-processor system, since only one program can be executing at a time, we could disable interrupts guaranteeing mutual exclusion
+
+Special Machine instructions:
+- a variety of multiple machine instruction pairs (which execute as a single atomic "instruction") have been postponed to manage critical sections, including:
+    1. set & test
+    2. Compare & swap
+    3. Exchange
+
+Using any of the above, we can easily modify the "second effort" algorithm to provide a good, but not perfect, solution (indefinite postponement
+is slightly possible).
+
+Semaphores:
+    - critical section solutions are not easily generalized to more complex synchronization problems. semaphores (dijkstra 1965) overcome this limitation
+
+    a semaphore is an integer variable that is accessed through 2 atomic operations:
+        Wait  : while (s <= 0) do; s--;
+        Signal: s++;
+
+    the above is an example of a spin-lock semaphore. a semaphore type that wastes cpu cycles spinning in the while-loop
+
+    - binary semaphore - can be 1 or 0
+    - counting semaphore - can be any integer. useful for allocating / sharing N identical resources to M concurrent processes (N <= M)
+    - semaphores can be used to manage critical section problems and cab be used to force a specific execution sequence of a set of processes 
+    - incorrect use of semaphores can result in processes being in their critical sections at the same time
+
+producer - consumer
+    producer - produces goods at one time, and passes the item to the consumer
+
+    consumer - receives goods, one at a time, from a producer
+
+    if their relative operating speeds are nicely matched - no problem, But, we cannot guarantee this, therefore we need
+    - a message passing method (handshaking)
+    - a fixed capacity storage facility (with message passing)
+    - an infinite capacity storage facility (message passing not needed)
+
+    approach 1 can be achieved using any mutual exclusion method, even our first approach will sort of work
+
+    approach 2 can be achieved using any mutual exclusion method, even out first approach will sort of work
+
+    approach 3 is not feasible
+
+Monitors:
+    - mutual exclusion methods and semaphores work but they have a number of weakness including 
+        it is difficult to express solutions to more complex concurrency control problems
+        - it is difficult to prove the correctness of a program using these methods
+        - it is easy to misuse these methods
+
+    Monitors are a higher-level construct that solves many of the problems associated with earlier mutual exclusion methods and semaphores.
+    characteristics of monitors include:
+    - monitors are concurrency construct that contains both the data and procedures required to perform the allocation of a shared resource
+    - monitors enforce information hiding
+    - monitors rigidly enforce mutual exclusion
+    - monitor processes waiting for a resource wait in a queue (free up CPU) until signaled bu another process that the resource is available
+    - monitor processes waiting have priority over any new processes
+    - monitors are a programming language construct so it is up to the compiler to enforce the mutual exclusion. therefore it is less likely that something
+    will go wrong (we assume the compiler is correct)
+
+Hoare vs Hansen Monitor
+    - the difference between Hoare and Hansen's approaches can be describe as follows: Consider a producer-consumer n-buffer process pair. The producer
+    finds the buffer full and does a wait. The consumer consumes one item and signals the producer to "wake-up" we now need some method to prevent the two
+    processes from being in the monitor at the same time
+
+    Hoare proposed that the awakened process (the producer) suspend the consumer process
+
+    Hansen proposed that the process sending the "wake-up" call exit the monitor immediately

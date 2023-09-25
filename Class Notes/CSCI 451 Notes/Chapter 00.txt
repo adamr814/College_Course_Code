@@ -1,0 +1,40 @@
+*** 8/23/23 ***
+
+unix introduction:
+- process commands
+    ps displays processes
+    -f displays all processes
+    -A displays all processes running on the machine
+
+- redirection lets you redirect from standard I/O 
+    < redirect standard input
+    > or 1> redirect standard output (overwrite)
+    >> or 1>> (append)
+    2> redirect standard error (overwrite)
+    2>> redirect (append)
+
+    format: command < input > output
+    cat < file_in > file_out
+
+    ls -1 ~ lists vertically
+
+    pipes:
+    redirects output from one program into another
+    Format: command | command
+
+    ls | more
+    cat < source_file | sort
+    cat < source_file | sort > result_file
+
+    aliases can be used to define new names for commonly used commands
+
+    links: links allow the creation of an aliases or nicknames for a file.
+    
+    permissions:
+        ls -la ~ gives all information of all files in directory
+        can use chmod to change permissions
+        chmod 755 file_name ~ is very useful
+
+        ./dump ~ has a script within it
+        chmod 755 dump ~ makes the file executeable (like a bash script)
+        
