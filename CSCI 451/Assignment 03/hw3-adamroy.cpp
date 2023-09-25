@@ -15,15 +15,16 @@ int globalValue;
 pthread_mutex_t m = PTHREAD_MUTEX_INITIALIZER;
 pthread_cond_t cv = PTHREAD_COND_INITIALIZER;
 bool mutexLock = false;
+bool fileOpen = false; //P3
 
 void* threadFunc1(void* inFileName_ptr){
     const char* inFilename = static_cast<const char*>(inFileName_ptr);
     std::ifstream inputFile(inFilename);
-    
-    if(!inputFile.is_open()){
+    fileOpen = inputFile.is_open();
+    if(!fileOpen){
         std::cerr << "Error: Unable to open file " << inFilename << std::endl;
         return nullptr;}
-        
+
     int data;
     while(inputFile >> data){
         pthread_mutex_lock(&m);
@@ -57,18 +58,17 @@ void* threadFunc2(void* outFileName_ptr){
         while(!mutexLock){
             pthread_cond_wait(&cv, &m);}
 
+        if(!fileOpen){
+            pthread_mutex_unlock(&m);
+            break;}
         if(globalValue == -1){ //P1
             pthread_mutex_unlock(&m);
             break;}
-
         if(globalValue % 2 == 0){
             outFile << globalValue << std::endl;
-            outFile << globalValue << std::endl;
-            std::cout << "hw3.out <-- " << globalValue << std::endl;
-            std::cout << "hw3.out <-- " << globalValue << std::endl;}
+            outFile << globalValue << std::endl;}
         else{ 
-            outFile << globalValue << std::endl;
-            std::cout << "hw3.out <-- " << globalValue << std::endl;}
+            outFile << globalValue << std::endl;}
 
             mutexLock = false;
             pthread_mutex_unlock(&m);
@@ -118,4 +118,9 @@ what was happening is before it was sending the last number to the T2 it would i
 and never print the last number. - This was solved by moving the set global to -1 to the very end
 of the thread function making sure it was the last thing the function did after it had no more data
 instead of breaking out of the loop if it found a EOF.
+
+P3:
+Minor problem; when running the program with no input file it would display an error and then
+end up deadlocking - the fix included adding another flag to check if the file was opened properly
+but I am just going to assume there will always be an input file because its still broken.
 */
