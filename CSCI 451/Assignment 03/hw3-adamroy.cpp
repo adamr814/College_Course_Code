@@ -17,6 +17,7 @@ int globalValue;
 pthread_mutex_t m = PTHREAD_MUTEX_INITIALIZER;
 pthread_cond_t cv = PTHREAD_COND_INITIALIZER;
 bool mutexLock = false;
+bool endOfFile = false;
 
 void* threadFunc1(void* inFileName_ptr){
     const char* inFilename = static_cast<const char*>(inFileName_ptr);
@@ -34,22 +35,11 @@ void* threadFunc1(void* inFileName_ptr){
             pthread_mutex_unlock(&m);
             pthread_cond_signal(&cv);
         }
-    /*
-    this section was added to account for the issue where thread 2 could not tell when the end of the file
-    would occur, this section now determines when the end of the input file is and when reached passes -1
-    to the second thread as an indication there will be no more data and to not get stuck in a loop causing
-    main to wait for thread 2 indefinitely.
-    */
-        if(inputFile.eof()){
-            pthread_mutex_lock(&m);
-            globalValue = -1;
-            mutexLock = true;
-            pthread_mutex_unlock(&m);
-            pthread_cond_signal(&cv);
-        } else {
-            std::cerr << "Error: Unable to read entire input file" << std::endl;
-        }
-        inputFile.close();   
+        pthread_mutex_lock(&m);
+        endOfFile = true;
+        pthread_mutex_unlock(&m);
+        pthread_cond_signal(&cv);
+        inputFile.close();
     } else {
         std::cerr << "Error: Unable to open file " << inFilename << std::endl;
     }
@@ -71,23 +61,23 @@ void* threadFunc2(void* outFileName_ptr){
     but first we need to make sure we aren't at the end of the file which causes an infinite loop (oops)
     it was causing the program to never exit because the thread was never done and constantly spinning
     */
-            if(globalValue == -1){
-                pthread_mutex_unlock(&m);
-                break;
-            }
-            if(globalValue % 2 == 0){
-                outFile << globalValue << std::endl;
-                outFile << globalValue << std::endl;
-                std::cout << "hw3.out <-- " << globalValue << std::endl; //console output for testing purposes
-                std::cout << "hw3.out <-- " << globalValue << std::endl; //console output for testing purposes
-            }
-            else{
-                std::cout << "hw3.out <-- " << globalValue << std::endl; //console output for testing purposes
-            }
+            if(mutexLock == true){
+                if(globalValue % 2 == 0){
+                    outFile << globalValue << std::endl;
+                    outFile << globalValue << std::endl;
+                    std::cout << "hw3.out <-- " << globalValue << std::endl; //console output for testing purposes
+                    std::cout << "hw3.out <-- " << globalValue << std::endl; //console output for testing purposes
+                }else{ 
+                    outFile << globalValue << std::endl;
+                    std::cout << "hw3.out <-- " << globalValue << std::endl; //console output for testing purposes
+                }
 
             mutexLock = false;
+            pthread_cond_signal(&cv);}
+            else if (endOfFile){
+                pthread_mutex_unlock(&m);
+                break;}
             pthread_mutex_unlock(&m);
-            pthread_cond_signal(&cv);
         }
         outFile.close();
     } else {
