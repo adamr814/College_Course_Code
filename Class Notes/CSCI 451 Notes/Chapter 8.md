@@ -1,4 +1,4 @@
-:: 9/25/23 ::
+%% 9/25/23 %%
 
 Memory Management
 
@@ -44,3 +44,45 @@ even though the model is simple it can still be used to make approximate predict
 1. assume we have 1meg RAM and the OS requires 200K and each of the 4 users requires about 200K. With and average I/O dependency of 80%, we get a CPU utilization of about 68%
 2. if we add another 1meg RAM, we can increase our degree of multiprogramming to 9 and we can raise our CPU utilization to about 87%. We've increased CPU utilization by about 28%
 3. If we add another 1meg Ram, we can increase our degree of multiprogramming to 14 and we can raise our CPU utilization to about 96%. We've further increased CPU utilization to about 10%.
+
+%% 9/27/23 %%
+**Contiguous Memory Allocation:**
+with Contiguous memory allocation, a program is allocated in a chunk of memory large enough to hold the entire program. We can have a single memory partition or multiple memory partitions
+- single memory partition - the OS and programs share the same memory partition. Used in DOS
+- fixed partition #1 - to allow more than one user program in memory, we need to allocation multiple partitions. The simplest method is to divide the memory into N fixed sized partitions where each partition can only contain one process
+- fixed partition #2 The method used in the IBM 360 was to allow the sys-admin to define multiple partitions, each of different size. Therefore, the system could be custom configured on a day-to-day basis (memory protection was by a 4-bit code assigned to each partition)
+- Dynamic partition - this scheme assumes that the partition sizes are dynamic (from process to process) This method requires some type of data structure (bit map, linked list, or table) to maintain a list of occupied memory locations and holes.
+- segmented - supports the users view of the memory. Where the memory is not broken down into fixed size meaningless chunks, but into chunks (segments) of related material. Segments might include global variables, stack space, local variables for each routine, the code for each routine etc...
+	- segmentation makes protection and sharing easier
+	- segmentation memory management is very similar to contiguous multiple memory partition scheme #3 (variable sized partitions) and suffers from the same problem of external fragmentation and occasionally internal fragmentation
+	- segmentation could be used in combining with paging.
+when using the **dynamic partition** memory partitioning scheme, when a process terminates its memory partition is returned to the system, (creating a **hole** in the memory - we also assume that adjacent holes are combined to form 1 larger hole) when another process becomes ready, the OS searches for a hole big enough to hold the process. If none are found, the process is allowed to start and to acquire the memory it needs (the left over memory is not marked/recorded as a hole).
+
+since we have random sized holes and processes requiring random sized holes, we need a method to manage this* Assumptions:
+1. that there are holes scattered throughout the memory
+2. this adjacent holes are combined into a single larger hole.
+3. that memory compaction (i.e. disk defragging) is not done because it is too expensive (except on the CDC Cyber mainframes which had special hardware to do this)
+
+	this same problem occurs with many disk file systems
+
+External fragmentation - As processes are loaded and terminated, the memory holes get broken down into smaller and smaller holes.
+- 50% rule - with the BEST-FIT allocation method, averaged over time, there will be half as memory holes as processes. Therefore, 1/3 of the total memory will be wasted. This rule also applies to swap systems.
+- Unused memory rule - used to determine percentage of wasted memory (%W)
+	Let: 
+
+		K = average hole size / average process size
+		%W = K / (K + 2)
+
+Internal fragmentation - A process may require all but a few bytes of an available hole. Since it is probably not worth the effort to allocate only the required memory and have to record a small hole, we would allocate the entire hole to the process. The leftover unused section is called the internal fragmentation.
+
+we know that fragmentation is a concern and that compaction is not feasible, so several allocation methods have been proposed to reduce the fragmentation problem:
+- first fit - allocate the first hole that is big enough (a greedy method). Fast, but the problem here is that we may allocate a hole is much larger than required.
+- Best fit - allocate the smallest hole that is big enough, Since we must search the entire list of holes, this method is slow but does the best job. (simulators suggest its is about equal to first-fit) of allocating memory
+- worst fit - allocate the largest hole. Since we must search the entire list of holes, this method is slow, and does the worst job of allocating memory
+- quick-fit - maintains a list of commonly requested partition sizes. Fast, but only for holes of exactly the commonly requested size.
+- buddy system - maintains a dynamic binary tree of holes (leaf nodes are called buddies). fast but as inefficient as all memory partitions must be a power of 2.
+
+If a program, using dynamic memory techniques, tries to acquire additional memory after it has begun execution, we have 3 choices:
+1. if there is an adjacent hole, allocate the required additional memory from it.
+2. rearrange the processes in memory such that an adjacent hole is formed.
+3. kill the process
