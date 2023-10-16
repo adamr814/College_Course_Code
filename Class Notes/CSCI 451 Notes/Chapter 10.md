@@ -26,3 +26,42 @@ in multi-programmed systems, many processes may be generating drive requests. Si
 to further exacerbate the problem, the intended disk locations will most likely be randomly spread about the disk
 
 if we use a first come first serve approach to fulfilling the drive requests the heads are then forced to dance about the platters to meet the requests. A long, long queue becomes possible. Obviously, we need as a disk scheduling method to combat this problem.
+
+%% 10/16/23 %%
+
+**Raid:**
+Simply put, whenever the DODRaid (Data On Demand) RAID controller receives instructions from the host to write a block to the array, it "stripes" or breaks that block of data into smaller pieces and apportions the pieces among the drives in the array. This decreases the time needed to complete the write operation. Similarly, when the host asks to read a block of data from the array, the DODRaid determines which drives are involved and simultaneously fetches the data from each drive, again making use of the multiple actuators at its disposal.
+
+there are several different methods of 
+
+**Raid Levels:**
+Raid 0 - stripes data blocks across disks:
+- Performance is improved by spreading the I/O load across many channels and drives.
+
+Raid 1 - creates an exact copy (or mirror) of a set of data on two or more disks:
+- 100% redundancy of data
+- Double cost w/o doubling capacity
+
+Raid 2 - stripes data at the bit (rather than block) level:
+- uses hamming codes recorded on the ECC disks
+- use of the hamming code permits using 7 disks in RAID 2 (see figure)
+- raid 2 is the only standard RAID level which can automatically recover accurate data for a single bit
+
+Raid 3 - uses byte-level striping with a dedicated pariatly disk
+
+Raid 4 uses block beleve striping with a dedicated paritu disk
+- raid 4 looks slimiar to raid 5 ecept that it does not use distributed parity and similar to raid 3 except that is tripes and the block level
+
+Raid 5 uses block-level striping with parity data distributed across all member disks
+- sometimes referred to as Raid S
+- a variation is known as ZFS Raid 5 which is similar to Raid 5 but uses variable stripe width to eliminate the RAID-5 write hole (stripe corruptions)
+
+Raid 6 - essential an extension of Raid level 5 which allows for additional fault tolerance by using a second independent distributed parity scheme. Data is striped on a block level across a set of drives. Just like in Raid 5 a second set of parity is calculated and written across all the drives.
+
+Raid 7 - all I/O transfers are asynchronous, independently controlled and cached via a high speed x-bus:
+- dedicated parity drive can be on any channel
+- embedded RTOS controller communications channel
+
+Raid 1+0 or 10
+
+Raid 53 - should really be called Raid 03 because its implemented as a striped (raid 0)
