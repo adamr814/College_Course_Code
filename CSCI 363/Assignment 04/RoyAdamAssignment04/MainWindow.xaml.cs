@@ -31,17 +31,20 @@ namespace RoyAdamAssignment04
             if (int.TryParse(LoanAmount.Text, out int loanamount) &&             
                 double.TryParse(LoanInterest.Text, out double interestRate))
             {
-                List<MonthlyDetail> monthlyDetails = new List<MonthlyDetail>();
-                double principal = loanamount;
-                double totalInterest = 0.0;
-                double fixedPayment = 0.0;
+                
+                
                 if (double.TryParse(LoanPeriod.Text, out double time))
                 {
+                    List<MonthlyDetail> monthlyDetails = new List<MonthlyDetail>();
+                    double principal = loanamount;
+                    double totalInterest = 0.0;                    
                     int selectedIndex = timeSelector.SelectedIndex;
+
                     if (selectedIndex == 1)
                     {
                         time *= 12;
                     }
+
                     double monthlyInterestRate = (interestRate / 12);
                     double monthlyPayment = principal * (monthlyInterestRate * Math.Pow(1 + monthlyInterestRate, time)) / (Math.Pow(1 + monthlyInterestRate, time) - 1);
 
@@ -62,36 +65,51 @@ namespace RoyAdamAssignment04
                         monthlyDetails.Add(detail);
                         principal = remainingBalance;
                     }
+                    TotalInterestTextBox.Text = $"Total Interest: {totalInterest:C}";
+                    MonthlyDetailsGrid.ItemsSource = monthlyDetails;
                 }
-                else if (double.TryParse(MonthlyPayment.Text, out fixedPayment))
+                else if (double.TryParse(MonthlyPayment.Text, out double fixedPayment))
                 {
-                    for (int month = 1; month <= time; month++)
+                    List<MonthlyDetail> monthlyDetails = new List<MonthlyDetail>();
+                    double principal = loanamount;
+                    double totalInterest = 0.0;
+                    int selectedIndex = timeSelector.SelectedIndex;
+                    double monthlyPayment = fixedPayment;
+                    int months = 0;
+
+                    double monthlyInterestRate = (interestRate / 12);
+                    while (principal > 0)
                     {
                         double monthlyInterest = (principal * interestRate) / 12;
-                        double monthlyPayment = fixedPayment;
-                        double remainingBalance = principal - monthlyPayment;
+                        double principalPayment = monthlyPayment - monthlyInterest;
+                        principal -= principalPayment;                       
                         totalInterest += monthlyInterest;
+                        months++;
 
                         MonthlyDetail detail = new MonthlyDetail
                         {
-                            Month = month,
+                            Month = months,
                             MonthlyPayment = Math.Round(monthlyPayment, 2),
                             InterestAmount = Math.Round(monthlyInterest, 2),
-                            RemainingBalance = Math.Round(remainingBalance, 2),
+                            RemainingBalance = Math.Round(principal, 2),
                         };
-                        monthlyDetails.Add(detail);
-                        principal = remainingBalance;
+                        monthlyDetails.Add(detail);                        
                     }
+
+                    if (selectedIndex == 1)
+                    {
+                       months /= 12;
+                    }
+                    
+                    TotalInterestTextBox.Text = $"Total Interest: {totalInterest:C}";
+                    MonthlyDetailsGrid.ItemsSource = monthlyDetails;
                 }
                 else
                 {
                     TotalInterestTextBox.Text = "Please enter a vailid interest rate or fixed payment";
                     MonthlyDetailsGrid.ItemsSource = null;
                     return;
-                }
-
-                TotalInterestTextBox.Text = $"Total Interest: {totalInterest:C}";
-                MonthlyDetailsGrid.ItemsSource = monthlyDetails;
+                }                
             }
             else
             {

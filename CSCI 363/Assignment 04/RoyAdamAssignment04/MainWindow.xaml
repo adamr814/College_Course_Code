@@ -27,19 +27,7 @@
         <TextBox x:Name="LoanInterest" HorizontalAlignment="Left" Margin="160,68,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120">
             <TextBox.ToolTip>
                 <ToolTip Content="Enter the interest percantage (ex. 0.03 for 3%)"/>
-            </TextBox.ToolTip>
-            <TextBox.Style>
-                <Style TargetType="{x:Type TextBox}">
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding Text, Converter={StaticResource IsNullOrEmptyConverter}, ElementName=Period}" Value="True">
-                            <Setter Property="IsEnabled" Value="True"/>
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding Text, Converter={StaticResource IsNullOrEmptyConverter}, ElementName=Period}" Value="False">
-                            <Setter Property="IsEnabled" Value="False"/>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </TextBox.Style>
+            </TextBox.ToolTip>            
         </TextBox>
 
         <TextBox x:Name="MonthlyPayment" HorizontalAlignment="Left" Margin="160,130,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120">
@@ -49,14 +37,14 @@
             <TextBox.Style>
                 <Style TargetType="{x:Type TextBox}">
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding Text, Converter={StaticResource IsNullOrEmptyConverter}, ElementName=Payment}" Value="True">
+                        <DataTrigger Binding="{Binding Text, Converter={StaticResource IsNullOrEmptyConverter}, ElementName=LoanPeriod}" Value="True">
                             <Setter Property="IsEnabled" Value="True"/>
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding Text, Converter={StaticResource IsNullOrEmptyConverter}, ElementName=Payment}" Value="False">
+                        </DataTrigger>                        
+                        <DataTrigger Binding="{Binding Text, Converter={StaticResource IsNullOrEmptyConverter}, ElementName=LoanPeriod}" Value="False">
                             <Setter Property="IsEnabled" Value="False"/>
-                        </DataTrigger>
+                        </DataTrigger>                        
                     </Style.Triggers>
-                </Style>
+                </Style>                
             </TextBox.Style>
         </TextBox>
 
@@ -64,6 +52,18 @@
             <TextBox.ToolTip>
                 <ToolTip Content="Enter the number of months or years of the loan"/>
             </TextBox.ToolTip>
+            <TextBox.Style>
+                <Style TargetType="{x:Type TextBox}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, Converter={StaticResource IsNullOrEmptyConverter}, ElementName=MonthlyPayment}" Value="True">
+                            <Setter Property="IsEnabled" Value="True"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Text, Converter={StaticResource IsNullOrEmptyConverter}, ElementName=MonthlyPayment}" Value="False">
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>               
+            </TextBox.Style>
         </TextBox>
         <ComboBox x:Name="timeSelector" Margin="300,97,0,0" VerticalAlignment="Top" SelectedIndex="0" HorizontalAlignment="Left" Width="84">
             <ComboBox.ToolTip>
