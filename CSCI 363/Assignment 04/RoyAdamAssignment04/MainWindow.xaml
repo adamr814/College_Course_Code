@@ -10,7 +10,7 @@
         <local:IsNullOrEmptyConverter x:Key="IsNullOrEmptyConverter" />
     </Window.Resources>
     <Grid>
-        <Grid>
+        <Grid Background="#FFD4D4D4">
             <StackPanel Margin="410,39,30,45">
                 <TextBox x:Name="TotalInterestTextBox" IsReadOnly="True" />
                 <DataGrid x:Name="MonthlyDetailsGrid" AutoGenerateColumns="True" Height="332"/>
@@ -20,14 +20,18 @@
         <Grid RenderTransformOrigin="0.328,0.49" Margin="25,15,520,0"/>
         <Label Content="Loan Amount:" HorizontalAlignment="Left" Margin="25,33,0,0" VerticalAlignment="Top"/>
         <Label Content="Loan Interest:" HorizontalAlignment="Left" Margin="25,64,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="LoanAmount" HorizontalAlignment="Left" Margin="160,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="LoanAmount" HorizontalAlignment="Left" Margin="160,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120">
+            <TextBox.ToolTip>
+                <ToolTip Content="Enter the total amount of the loan"/>
+            </TextBox.ToolTip>
+        </TextBox>
         <Label Content="Loan Period:" HorizontalAlignment="Left" Margin="25,95,0,0" VerticalAlignment="Top"/>
         <Label Content="Monthly Payment:" HorizontalAlignment="Left" Margin="25,126,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="Calculate" Content="Calculate" Click="CalculateButton_Click" HorizontalAlignment="Left" Margin="182,164,0,0" VerticalAlignment="Top" Width="76"/>
+        <Button x:Name="Calculate" Content="Calculate" Click="CalculateButton_Click" HorizontalAlignment="Left" Margin="182,164,0,0" VerticalAlignment="Top" Width="76" BorderBrush="#FF707070" Background="#FFBAFFC8"/>
         <TextBox x:Name="LoanInterest" HorizontalAlignment="Left" Margin="160,68,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120">
             <TextBox.ToolTip>
                 <ToolTip Content="Enter the interest percantage (ex. 0.03 for 3%)"/>
-            </TextBox.ToolTip>            
+            </TextBox.ToolTip>
         </TextBox>
 
         <TextBox x:Name="MonthlyPayment" HorizontalAlignment="Left" Margin="160,130,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120">
@@ -39,18 +43,18 @@
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding Text, Converter={StaticResource IsNullOrEmptyConverter}, ElementName=LoanPeriod}" Value="True">
                             <Setter Property="IsEnabled" Value="True"/>
-                        </DataTrigger>                        
+                        </DataTrigger>
                         <DataTrigger Binding="{Binding Text, Converter={StaticResource IsNullOrEmptyConverter}, ElementName=LoanPeriod}" Value="False">
                             <Setter Property="IsEnabled" Value="False"/>
-                        </DataTrigger>                        
+                        </DataTrigger>
                     </Style.Triggers>
-                </Style>                
+                </Style>
             </TextBox.Style>
         </TextBox>
 
         <TextBox x:Name="LoanPeriod" HorizontalAlignment="Left" Margin="160,99,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120">
             <TextBox.ToolTip>
-                <ToolTip Content="Enter the number of months or years of the loan"/>
+                <ToolTip Content="Enter the number of months/years of the loan"/>
             </TextBox.ToolTip>
             <TextBox.Style>
                 <Style TargetType="{x:Type TextBox}">
@@ -62,17 +66,17 @@
                             <Setter Property="IsEnabled" Value="False"/>
                         </DataTrigger>
                     </Style.Triggers>
-                </Style>               
+                </Style>
             </TextBox.Style>
         </TextBox>
         <ComboBox x:Name="timeSelector" Margin="300,97,0,0" VerticalAlignment="Top" SelectedIndex="0" HorizontalAlignment="Left" Width="84">
             <ComboBox.ToolTip>
-                <ToolTip Content="Set loan length to months or years"/>
+                <ToolTip Content="Set loan length to months/years"/>
             </ComboBox.ToolTip>
             <ComboBoxItem Content="Months"/>
             <ComboBoxItem Content="Years"/>
         </ComboBox>
-        <Button x:Name="Clear" Content="Clear Form" HorizontalAlignment="Left" Margin="182,202,0,0" VerticalAlignment="Top" Width="76"/>
+        <Button x:Name="Clear" Content="Clear Form" Click="ClearButton_Click" HorizontalAlignment="Left" Margin="182,202,0,0" VerticalAlignment="Top" Width="76" Background="#FFFFBCBC"/>
 
     </Grid>
 </Window>

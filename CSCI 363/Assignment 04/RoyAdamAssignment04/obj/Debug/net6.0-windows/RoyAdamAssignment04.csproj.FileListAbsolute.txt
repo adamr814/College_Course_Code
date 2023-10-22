@@ -5,6 +5,7 @@ C:\Users\adamr\Documents\Code\CSCI 363\Assignment 04\RoyAdamAssignment04\bin\Deb
 C:\Users\adamr\Documents\Code\CSCI 363\Assignment 04\RoyAdamAssignment04\bin\Debug\net6.0-windows\RoyAdamAssignment04.pdb
 C:\Users\adamr\Documents\Code\CSCI 363\Assignment 04\RoyAdamAssignment04\obj\Debug\net6.0-windows\MainWindow.g.cs
 C:\Users\adamr\Documents\Code\CSCI 363\Assignment 04\RoyAdamAssignment04\obj\Debug\net6.0-windows\App.g.cs
+C:\Users\adamr\Documents\Code\CSCI 363\Assignment 04\RoyAdamAssignment04\obj\Debug\net6.0-windows\GeneratedInternalTypeHelper.g.cs
 C:\Users\adamr\Documents\Code\CSCI 363\Assignment 04\RoyAdamAssignment04\obj\Debug\net6.0-windows\RoyAdamAssignment04_MarkupCompile.cache
 C:\Users\adamr\Documents\Code\CSCI 363\Assignment 04\RoyAdamAssignment04\obj\Debug\net6.0-windows\RoyAdamAssignment04_MarkupCompile.lref
 C:\Users\adamr\Documents\Code\CSCI 363\Assignment 04\RoyAdamAssignment04\obj\Debug\net6.0-windows\MainWindow.baml
@@ -18,4 +19,3 @@ C:\Users\adamr\Documents\Code\CSCI 363\Assignment 04\RoyAdamAssignment04\obj\Deb
 C:\Users\adamr\Documents\Code\CSCI 363\Assignment 04\RoyAdamAssignment04\obj\Debug\net6.0-windows\RoyAdamAssignment04.pdb
 C:\Users\adamr\Documents\Code\CSCI 363\Assignment 04\RoyAdamAssignment04\obj\Debug\net6.0-windows\RoyAdamAssignment04.genruntimeconfig.cache
 C:\Users\adamr\Documents\Code\CSCI 363\Assignment 04\RoyAdamAssignment04\obj\Debug\net6.0-windows\ref\RoyAdamAssignment04.dll
-C:\Users\adamr\Documents\Code\CSCI 363\Assignment 04\RoyAdamAssignment04\obj\Debug\net6.0-windows\GeneratedInternalTypeHelper.g.cs

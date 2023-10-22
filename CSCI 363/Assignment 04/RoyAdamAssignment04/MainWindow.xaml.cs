@@ -26,6 +26,16 @@ namespace RoyAdamAssignment04
         {
             InitializeComponent();
         }
+        private void ClearButton_Click(object sender, RoutedEventArgs e)
+        {
+            LoanAmount.Clear();
+            LoanInterest.Clear();
+            LoanPeriod.Clear();
+            MonthlyPayment.Clear();
+            timeSelector.SelectedIndex = 0;
+            TotalInterestTextBox.Clear();
+            MonthlyDetailsGrid.ItemsSource = null;
+        }
         private void CalculateButton_Click(object sender, RoutedEventArgs e)
         {
             if (int.TryParse(LoanAmount.Text, out int loanamount) &&             
