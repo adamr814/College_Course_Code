@@ -47,9 +47,9 @@ void* threadFunc(void* arg){
             else {
                 globalBalance -= value;
             }
+            std::cout << pthread_self() << " updated balance to: $" << globalBalance << std::endl;
         }
     }
-    std::cout << "The balance after " << pthread_self() << " completed: $" << globalBalance << std::endl;
     return NULL;
 }
 
@@ -59,7 +59,7 @@ int main(){
 
     for (int i=0; i < 5; i++){
         pthread_create(&threads[i], nullptr, threadFunc, (void*)filenames[i]);
-        usleep(20000); //See Note
+        usleep(300); //See Note
     }
 
     return 0;
