@@ -1,0 +1,63 @@
+﻿<Window x:Class="RoyAdamAssignment06.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RoyAdamAssignment06"
+        mc:Ignorable="d"
+        Title="Region and Language Options" Height="560" Width="450">
+    <Grid>
+        <TabControl>
+            <TabItem Header="Formats">
+                <Grid Background="White">
+                    <TextBlock HorizontalAlignment="Center" Margin="0,10,0,0" TextWrapping="Wrap" Text="To Change the way your computer displays numbers currencies, dates, and times select an entry from the Format list." VerticalAlignment="Top" Width="419"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="10,59,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="-0.609,-0.935" Text="Current format:"/>
+                    <ComboBox Name="RegionSelector" HorizontalAlignment="Left" Margin="10,80,0,0" VerticalAlignment="Top" Width="210">
+                        <ComboBoxItem Content="English (US/UK)"/>
+                        <ComboBoxItem Content="English (New Zealand)"/>
+                        <ComboBoxItem Content="French (France/Canada)"/>
+                    </ComboBox>
+                    <TextBlock HorizontalAlignment="Left" Margin="10,59,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="-0.609,-0.935" Text="Current format:"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="10,144,0,0" TextWrapping="Wrap" Text="Examples of how data is displayed using this format:" VerticalAlignment="Top"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="10,180,0,0" TextWrapping="Wrap" Text="Number:" VerticalAlignment="Top"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="10,211,0,0" TextWrapping="Wrap" Text="Currency:" VerticalAlignment="Top"/>
+                    <TextBox Name="NumberBox" HorizontalAlignment="Left" Margin="81,178,0,0" TextWrapping="Wrap" Text="123,456.00" VerticalAlignment="Top" Width="254"/>
+                    <TextBox Name="CurrencyBox" HorizontalAlignment="Left" Margin="81,209,0,0" TextWrapping="Wrap" Text="$100,000.00" VerticalAlignment="Top" Width="254"/>
+                    <TextBox Name="TimeBox" HorizontalAlignment="Left" Margin="81,239,0,0" TextWrapping="Wrap" Text="1:23pm" VerticalAlignment="Top" Width="254"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="10,241,0,0" TextWrapping="Wrap" Text="Time:" VerticalAlignment="Top"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="10,269,0,0" TextWrapping="Wrap" Text="Short Date:" VerticalAlignment="Top"/>
+                    <TextBox Name="ShortDateBox" HorizontalAlignment="Left" Margin="81,268,0,0" TextWrapping="Wrap" Text="11/9/2023" VerticalAlignment="Top" Width="254"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="10,299,0,0" TextWrapping="Wrap" Text="Long Date:" VerticalAlignment="Top"/>
+                    <TextBox Name="LongDateBox" HorizontalAlignment="Left" Margin="81,297,0,0" TextWrapping="Wrap" Text="Sunday, November 12th 2023" VerticalAlignment="Top" Width="254"/>
+                    <ComboBox Name="NumberFormat" HorizontalAlignment="Left" Margin="362,176,0,0" VerticalAlignment="Top" Width="67">
+                        <ComboBoxItem Content=","/>
+                        <ComboBoxItem Content="."/>
+                    </ComboBox>
+                    <ComboBox Name="CurrencyFormat" HorizontalAlignment="Left" Margin="362,207,0,0" VerticalAlignment="Top" Width="67">
+                        <ComboBoxItem Content="$"/>
+                        <ComboBoxItem Content="£"/>
+                    </ComboBox>
+                    <ComboBox Name="TimeFormat" HorizontalAlignment="Left" Margin="362,237,0,0" VerticalAlignment="Top" Width="67">
+                        <ComboBoxItem Content="12H"/>
+                        <ComboBoxItem Content="24H"/>
+                    </ComboBox>
+                    <ComboBox Name="DateFormat" HorizontalAlignment="Left" Margin="362,266,0,0" VerticalAlignment="Top" Width="67">
+                        <ComboBoxItem Content="M/D/Y"/>
+                        <ComboBoxItem Content="D/M/Y"/>
+                    </ComboBox>
+                    <Button Name="ChangeFormatButton" Content="Change Format" Click="ChangeFormatButton_Click" HorizontalAlignment="Left" Margin="242,339,0,0" VerticalAlignment="Top" Width="93"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Location">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header ="Keyboards and Languages">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="Administrative">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Window>
