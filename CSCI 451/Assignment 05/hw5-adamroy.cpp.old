@@ -1,0 +1,100 @@
+/*
+Adam Roy
+CSCI 451
+HW5
+*/
+
+//include statements
+#include <iostream>
+#include <pthread.h>
+#include <fstream>
+
+pthread_mutex_t m = PTHREAD_MUTEX_INITIALIZER;
+pthread_mutex_t tM[3];
+
+const char* inputFiles[3] = {"hw5-1.in", "hw5-2.in", "hw5-3.in"};
+const char* outputFile = "hw5.out";
+
+int ThreadCounter = 0;
+char globalChar = '\0';
+
+void* threadFunction(void* threadID) {
+    int id = *(int*)threadID;
+
+    std::ifstream inFile(inputFiles[id]);
+    if (inFile.is_open()) {
+        char ch;
+        while (inFile.get(ch)) {
+            if(ch == '\n'){
+                ch = ' ';
+            }
+            pthread_mutex_lock(&tM[id]);
+            globalChar = ch;
+            pthread_mutex_lock(&m); // Lock the main thread
+            //pthread_mutex_unlock(&m); // Unlock the main thread
+            pthread_mutex_unlock(&tM[id]);
+        }
+        inFile.close();
+    }
+
+    pthread_mutex_lock(&m);
+    ThreadCounter++;
+    pthread_mutex_unlock(&m);
+
+    while (ThreadCounter < 3) {
+        pthread_mutex_unlock(&tM[id]);
+        pthread_mutex_lock(&m); // Lock the main thread
+        pthread_mutex_unlock(&m); // Unlock the main thread
+    }
+
+    pthread_exit(NULL);
+}
+
+int main() {
+    pthread_t threads[3];
+    int threadIDs[3];
+
+    pthread_mutex_init(&m, NULL);
+
+    for (int i = 0; i < 3; i++) {
+        pthread_mutex_init(&tM[i], NULL);
+        pthread_mutex_lock(&tM[i]);
+        threadIDs[i] = i;
+    }
+
+    for (int i = 0; i < 3; i++) {
+        pthread_create(&threads[i], NULL, threadFunction, &threadIDs[i]);
+    }
+
+    std::ofstream outFile(outputFile);
+    while (ThreadCounter < 3) {
+        pthread_mutex_lock(&m);
+        pthread_mutex_unlock(&m);
+        
+        for (int i = 0; i < 3; i++) {
+            pthread_mutex_unlock(&tM[i]); // Unlock the thread-specific mutex
+            if (outFile.is_open()) {
+            outFile << globalChar;
+        }
+        pthread_mutex_unlock(&tM[i]); // Unlock the main thread
+    }
+    }
+    
+
+    /*for (int i = 0; i < 3; i++) {
+        if (outFile.is_open()) {
+            outFile << globalChar;
+        }
+        pthread_mutex_unlock(&tM[i]);
+    }*/
+
+    outFile.close();
+
+    for (int i = 0; i < 3; i++) {
+        pthread_join(threads[i], NULL);
+        pthread_mutex_destroy(&tM[i]);
+    }
+
+    pthread_mutex_destroy(&m);
+    return 0;
+}
