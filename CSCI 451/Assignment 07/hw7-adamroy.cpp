@@ -80,7 +80,7 @@ int main(int argc, char *argv[]){
     char buffer[15];
     ssize_t bytesRead;
 
-    std::ofstream outfile("hw7.out", std::ios::app);
+    std::ofstream outfile("hw7.out", std::ios::trunc);
     if(!outfile.is_open()){
         std::cerr << "Error opening outfile" << std::endl;
         return 1;
@@ -88,11 +88,13 @@ int main(int argc, char *argv[]){
 
     for (int i = 0; i < 9; ++i){
         while ((bytesRead = read(pipe_fds[i][0], buffer, sizeof(buffer))) > 0) {
+            std::cout << buffer << std::endl;
             sem_wait(semaphore);
             outfile << buffer << std::endl;
             sem_post(semaphore);        
         }
     }
+    outfile << *sharedCounter;
     outfile.close();
 
     for (int i = 1; i <= 9; ++i){
