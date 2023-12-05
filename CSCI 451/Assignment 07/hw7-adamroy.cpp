@@ -6,7 +6,6 @@ Assignment 07 - Grandpa
 
 //include statements
 #include <iostream>
-#include <cstring>
 #include <sys/wait.h>
 #include <semaphore.h>
 #include <unistd.h>
@@ -70,6 +69,8 @@ int main(int argc, char *argv[]){
             sem_close(semaphore);
             sem_unlink("_sem");
             return 1;
+        } else {
+            waitpid(pid, nullptr, 0);
         }
     }
     
@@ -77,6 +78,7 @@ int main(int argc, char *argv[]){
         close(pipe_fds[i][1]);
     }
 
+    //Read data from child process
     char buffer[15];
     ssize_t bytesRead;
 
@@ -93,6 +95,7 @@ int main(int argc, char *argv[]){
             sem_post(semaphore);        
         }
     }
+    outfile << *sharedCounter;
     outfile.close();
 
     for (int i = 1; i <= 9; ++i){
