@@ -10,4 +10,4 @@ grandchild: p.cpp
 	$(CC) $(CFLAGS) -o p p.cpp
 
 clean:
-	rm -f grandpa p
+	rm -f grandpa p pipe_*

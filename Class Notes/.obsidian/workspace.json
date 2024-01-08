@@ -37,7 +37,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CSCI 451 Notes/Chapter 17.md",
+                "file": "CSCI 451 Notes/Chapter 14.md",
                 "mode": "source",
                 "source": false
               }
@@ -110,7 +110,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "CSCI 451 Notes/Chapter 17.md",
+                "file": "CSCI 451 Notes/Chapter 14.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -127,7 +127,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "CSCI 451 Notes/Chapter 17.md",
+                "file": "CSCI 451 Notes/Chapter 14.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -150,7 +150,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "CSCI 451 Notes/Chapter 17.md"
+                "file": "CSCI 451 Notes/Chapter 14.md"
               }
             }
           }
@@ -171,17 +171,17 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "efc181ff391a3e23",
+  "active": "bcaae266c346fac6",
   "lastOpenFiles": [
-    "CSCI 451 Notes/Chapter 14.md",
     "CSCI 451 Notes/Chapter 17.md",
+    "CSCI 451 Notes/Chapter 14.md",
+    "CSCI 451 Notes/Chapter 11.md",
+    "CSCI 451 Notes/Chapter 10.md",
     "CSCI 435 Notes/10-31-23.md",
     "CSCI 451 Notes/Chapter 09.md",
     "CSCI 435 Notes",
     "CSCI 451 Notes/Chapter 08.md",
     "CSCI 451 Notes/Chapter 07.md",
-    "CSCI 451 Notes/Chapter 10.md",
-    "CSCI 451 Notes/Chapter 11.md",
     "CSCI 451 Notes/Ch03 8:28:23 CodeSnip.jpg",
     "CSCI 451 Notes/Images",
     "CSCI 451 Notes/Images/IMG_0361.jpg",
