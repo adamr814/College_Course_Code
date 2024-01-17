@@ -1,0 +1,137 @@
+**Databases and Database Users**
+Introduction
+- Data is everywhere and comes in different shapes and sizes
+	- The data needs to be stored and maintained using a database management system
+- Databases
+	- used to maintain information and present data to users
+- Examples of databases include
+	- reservation systems (hotel, car, airline)
+	- transactional processing systems (online banking systems)
+
+Recent Developments
+- social networks: started storing a lot of information about people (e.g. tweets, posts, photos, videos, etc.)
+	- facebook
+	- twitter
+	- linkedin
+- all of the above constitutes data
+- search engines such as google, yahoo
+
+- new technologies known as non-database platforms are emerging to manage vast amounts of data generated on the web:
+	- big data storage systems involve large clusters of distributed computers (ch 25)
+	- NoSQL (not only sql) systems (ch24)
+
+Core DataBase terminologies
+- data:
+	- any information (most likely in electronic form) worth preserving
+- database:
+	- a collection of related data describing the activities of one or more orgizations
+		- organized for access and preservation
+- query
+	- an operation that extracts specific data from the database
+- relation
+	- an organization of data into a two dimensional table
+	- rows (tuples) represent basic entities or facts of some sot
+	- columns (attributed or fields) represents properties of those entities
+- schema:
+	- a description of the structure of the data in a database
+	- also known as metadata
+
+Database properties
+- a database must
+	- represent some aspects of the real world
+	- the collection of data must be logically coherent and meaningful
+	- designed, build, and populated with data for a specific purpose
+
+Database construction
+- the database can be constructed
+	- manually
+		- eg a library card catalog
+	- computerized
+		- specialized DB
+			- a specific set of applications
+		- general purpose DB
+			- DBMS
+
+Typical DBMS Functionality
+- define a particular database in terms of its data types, structures, and constraints.
+- construct or load the initial database contents on a secondary storage medium
+- manipulating the database:
+	- retrieving: querying, generating reports
+	- modifying: inserting, deleting, and updating its content
+	- accessing: accessing the database through web applications
+- processing and sharing by a set of concurrent users and application programs - yet, keeping all data valid and consistent.
+
+Additional DBMS Functionality
+- DBMS may additionally provide:
+	- protection or security measures to prevent unauthorized access
+	- presentation and visualization of data
+	- maintenance of the database and associated programs over the lifetime of the database application
+[[Screenshot 2024-01-11 at 11.35.39 AM.png]]
+
+Database Engineering
+- design of any DB application includes:
+	- requirements definition and analysis
+		- use case diagrams scenario, etc
+	- conceptual design
+		- initial solution modeling using entity relationship diagram (ERD) or unified modeling language (UML)
+	- logical design
+		- performed using oracle, mysquel, etc.
+	- physical design
+		- storing/accessing/indexing
+
+Main characteristics of the database approach
+- self describing nature of a database system:
+	- a DBMS catalog stores the description of a particular database
+	- the description is called metadata
+	- this allows the DBMS software to work with different database applications
+- insulation between programs and data:
+	- called program-data independence
+	- allows changing data structures and storage organization without having to change the DBMS access programs
+- data abstraction:
+	- a data model hides storage details and presents the users with a conceptual view of the database
+	- programs refer to the data model constructs rather than data storage details
+- support multiple views of the data:
+	- each user may see a different view of the database, which describes only the data of interest to that user
+
+Support multiple views
+- a typical database has many users
+
+Sharing of data and multiuser transaction processing
+- a multiuser DBMS must allow multiple users to access data simultaneously
+- DBMS must support the **concurrency control** subsystem to ensure the correctness of results performed by updating operations.
+- CC plays a key role in online transaction processing systems.
+	- works with the notion of **transaction**
+	- DBMS enforces **ACID properties** of the transaction
+
+Database users
+- users may be divided into two categories:
+	- actors on the scene: those who use, control the database content, design, develop, and maintain database applications
+	- actors behind the scene: those who design and develop the DBMS software and related tools, and the computer systems operators.
+- database administrators:
+	- responsible for authorizing access to the database for coordinating and monitoring its use, acquiring software and hardware resources
+- end users: they use the data for queries, and reports and some of the update the database content
+- end users ban be categorized into:
+	- casual
+	- naive
+	- sophisticated
+	- stand alone
+- system analyst and application developers (accounts)
+	- systems a
+- system designers
+- tool developers
+- operators and maintenance personnel
+
+Primary advantages of using a DBMS
+- controlling redundancy
+	- duplicate space and efforts, inconsistency etc.
+	- normalization vs denormalization 
+- restricting unauthorized access
+- providing persistent storage for program objects and data structure
+	- impedance mismatch problem
+- providing view to generate new information from existing ones
+- providing multiple user interfaces
+- representing complex relationships among data
+- enforcing integrity constraints
+- providing backup and crash recovery
+- scheduling concurrent accesses to the data
+- reducing application development time
