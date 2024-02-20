@@ -1,4 +1,4 @@
-Data Models and Data Abstractions
+### Data Models and Data Abstractions##
 - one key feature of a database is to provide data abstraction
 - data abstraction
 	- hide details of data organization,

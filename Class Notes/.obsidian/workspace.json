@@ -4,34 +4,59 @@
     "type": "split",
     "children": [
       {
-        "id": "20af56d34ffbef1a",
+        "id": "cf83be24fcf83376",
         "type": "tabs",
         "children": [
           {
-            "id": "067b5f074fa43de8",
+            "id": "caa0b35ed2360d75",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CSCI 455 Notes/Chapter 2.md",
+                "file": "CSCI 455 Notes/Term Project.md",
                 "mode": "source",
                 "source": false
               }
             }
           },
           {
-            "id": "b102b97e16cd7ec1",
+            "id": "0835e975fbd340cf",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Chapter 1.md",
+                "file": "CSCI 463 Notes/Class Notes.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "7cf50ac619ee824f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "CSCI 455 Notes/Chapter 7.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "768e945ed31b81f5",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "CSCI 455 Notes/Chapter 8.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -97,7 +122,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "CSCI 455 Notes/Chapter 2.md",
+                "file": "CSCI 455 Notes/Chapter 8.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -114,7 +139,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "CSCI 455 Notes/Chapter 2.md",
+                "file": "CSCI 455 Notes/Chapter 8.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -137,7 +162,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "CSCI 455 Notes/Chapter 2.md"
+                "file": "CSCI 455 Notes/Chapter 8.md"
               }
             }
           }
@@ -158,11 +183,18 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "067b5f074fa43de8",
+  "active": "768e945ed31b81f5",
   "lastOpenFiles": [
-    "CSCI 455 Notes/Chapter 1.md",
+    "CSCI 455 Notes/Chapter 7.md",
+    "CSCI 455 Notes/Chapter 8.md",
+    "CSCI 455 Notes/Term Project.md",
+    "CSCI 463 Notes/Class Notes.md",
+    "CSCI 455 Notes/Notes.md",
+    "Untitled.canvas",
+    "CSCI 455 Notes/Homework/Assignment 1.md",
+    "CSCI 455 Notes/Homework",
     "CSCI 455 Notes/Chapter 2.md",
-    "Chapter 1.md",
+    "CSCI 455 Notes/Chapter 1.md",
     "CSCI 463 Notes",
     "CSCI 455 Notes/Images/Screenshot 2024-01-11 at 11.35.39 AM.png",
     "CSCI 455 Notes/Images",
