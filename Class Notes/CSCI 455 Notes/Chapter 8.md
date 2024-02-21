@@ -1,4 +1,4 @@
-**The Relational Algebra and Relational Calculus**
+## The Relational Algebra and Relational Calculus ##
 
 **Objectives**
 - formal foundations of SQL
@@ -8,7 +8,7 @@
 	- examples of how they can be used to write complex queries?
 	- relational and domain calculus, and how they can be used to write queries
 
-**Relational Algebra
+**Relational Algebra**
 - Relational algebra?
 	- one of the two formal query languages associated with the relational model
 	- queries in algebra are composed of a collection of operators
@@ -68,4 +68,37 @@
 - Select operation is cumulative
 `σ<c1>(σ<c2>(R)) = σ<c2>(σ<c1>(R))`
 
-**The project operation ()
+**The project operation (π)**
+- selects certain columns (vertical partition) from the tables
+- general format:
+	- π{attribute list}({relation name})
+- e.g. list each employee's first name, last name and salary
+`πLNAME, FNAME, SALARY (EMPLOYEE)`
+
+**The project operation: Properties
+- degree of the relation is the number of attributes in the attribute list
+- the cardinality of the result relation:
+	- number of tuples <= |R(r)|
+
+**More on Project**
+- the resulting relation is the relation having the same number of attributes and the same order as specified in the attributes list
+- does not hold commutatively property
+	- π{list1}(π{list2}(R)) != π{list2}(π{list1}(R))
+- duplicate tuples are removed
+- e.g. `π sex, salary (EMPLOYEE)`
+	- Fig 8.1.c
+	 ![[Pasted image 20240220120039.png]]
+
+**Sequence of Operations**
+- relational operations can be applied in various ways:
+	- using an in-line expression (a single complex expression)
+	- using a sequence of simple expression
+- E.g., retrieve the first name, last name and salary of all employees who work in dept 5
+`π LNAME, FNAME, SALARY (σDNO=5 (EMPLOYEE))`
+![[Pasted image 20240220120449.png]]
+
+**Sequencing: Procedural approach**
+- an alternative approach using sequencing and temporary tables
+
+**Renaming (assigning)**
+- rename the attributes
