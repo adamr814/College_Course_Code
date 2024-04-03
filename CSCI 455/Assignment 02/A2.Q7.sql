@@ -1,0 +1,3 @@
+SELECT ROUND(AVG(EMPLOYEE.Salary), 2) AS Average_Female_Salary
+FROM EMPLOYEE
+WHERE EMPLOYEE.Sex = 'F';
