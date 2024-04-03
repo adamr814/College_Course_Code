@@ -1,5 +1,6 @@
 # College Course Code
 ## _All Course Work & Code_
+### [Link To Class Notes]
 
 Folder List
 | Course | Course Name | Semester Taken |
@@ -24,8 +25,9 @@ Folder List
 
 [//]: #
 
-   [CSCI 463]:
-   [CSCI 455]:
+   [Link To Class Notes]: <https://github.com/adamr814/College_Course_Code/tree/main/Class%20Notes>
+   [CSCI 463]: <https://github.com/adamr814/College_Course_Code/tree/main/CSCI%20463>
+   [CSCI 455]: <https://github.com/adamr814/College_Course_Code/tree/main/CSCI%20455>
    [CSCI 451]: <https://github.com/adamr814/College_Course_Code/tree/main/CSCI%20451>
    [CSCI 435]: <https://github.com/adamr814/College_Course_Code/tree/main/CSCI%20435>
    [CSCI 370]: <https://github.com/adamr814/College_Course_Code/tree/main/CSCI%20370>
