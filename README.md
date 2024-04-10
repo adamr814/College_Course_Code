@@ -1,9 +1,12 @@
 # College Course Code
 ## _All Course Work & Code_
+### [Link To Class Notes]
 
 Folder List
 | Course | Course Name | Semester Taken |
 | ------ | ------ | ------ |
+| [CSCI 463] | Software Engineering | Spring 2024 |
+| [CSCI 455] | Database Management Systems | Spring 2024 |
 | [CSCI 451] | Operating Systems 1 | Fall 2023 |
 | [CSCI 435] | Formal Languages & Automata | Fall 2023 |
 | [CSCI 370] | Computer Architecture | Spring 2023 |
@@ -15,13 +18,16 @@ Folder List
 | [CSCI 266] | Tools & Techniques of Computing | Spring 2023 |
 | [CSCI 265] | Intro to Programming Languages | Spring 2023 |
 | [CSCI 242] | Algorithms & Data Structures | Fall 2022 |
-| [CSCI 161] | Intro to Coding 2 | ? |
-| [CSCI 160] | Intro to Coding 1 | ? |
+| [CSCI 161] | Intro to Coding 2 | Spring 2021 |
+| [CSCI 160] | Intro to Coding 1 | Fall 2020 |
 | [ME 200] | Engineering Programming |  Spring 2020 |
 
 
 [//]: #
 
+   [Link To Class Notes]: <https://github.com/adamr814/College_Course_Code/tree/main/Class%20Notes>
+   [CSCI 463]: <https://github.com/adamr814/College_Course_Code/tree/main/CSCI%20463>
+   [CSCI 455]: <https://github.com/adamr814/College_Course_Code/tree/main/CSCI%20455>
    [CSCI 451]: <https://github.com/adamr814/College_Course_Code/tree/main/CSCI%20451>
    [CSCI 435]: <https://github.com/adamr814/College_Course_Code/tree/main/CSCI%20435>
    [CSCI 370]: <https://github.com/adamr814/College_Course_Code/tree/main/CSCI%20370>
