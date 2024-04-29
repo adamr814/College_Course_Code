@@ -9,7 +9,7 @@ use OptiChart;
 
 CREATE TABLE
     Patient (
-        MRN INT PRIMARY KEY,
+        MRN INT NOT NULL,
         lastName VARCHAR(20) NOT NULL,
         firstName VARCHAR(20) NOT NULL,
         username VARCHAR(20) NOT NULL UNIQUE, -- Ensures unique usernames
@@ -20,17 +20,19 @@ CREATE TABLE
         phoneNumber VARCHAR(20) NOT NULL,
         contactPreference VARCHAR(8) NOT NULL CHECK (contactPreference IN ('CALL', 'TEXT', 'MAIL')),
         referralNumber VARCHAR(20) DEFAULT NULL -- Allows null values
+        PRIMARY KEY (MRN)
     );
 
 CREATE TABLE
     Staff (
-        EIN INT PRIMARY KEY,
+        EIN INT NOT NULL,
         lastName VARCHAR(20) NOT NULL,
         firstName VARCHAR(20) NOT NULL,
         username VARCHAR(20) NOT NULL UNIQUE, -- Ensures unique usernames
         password VARCHAR(20) NOT NULL,
         role VARCHAR(10) NOT NULL CHECK (role IN ('Physician', 'Assistant', 'Admin')),
-        email VARCHAR(20) NOT NULL UNIQUE -- Ensures unique email addresses
+        email VARCHAR(20) NOT NULL UNIQUE, -- Ensures unique email addresses
+        PRIMARY KEY (EIN)
     );
 
 CREATE TABLE
@@ -55,13 +57,14 @@ CREATE TABLE
 
 CREATE TABLE
     Appointment (
-        apptID INT PRIMARY KEY,
+        apptID INT AUTO_INCREMENT NOT NULL,
         date DATE NOT NULL,
         time TIME NOT NULL,
         reason TEXT,
         room VARCHAR(5),
         patientMRN INT NOT NULL,
         staffEIN INT NOT NULL,
+        PRIMARY KEY (apptID),
         FOREIGN KEY (patientMRN) REFERENCES Patient (MRN),
         FOREIGN KEY (staffEIN) REFERENCES Staff (EIN)
     );
@@ -95,19 +98,21 @@ CREATE TABLE
 
 CREATE TABLE
     Pharmacy (
-        pharmacyID INT PRIMARY KEY,
+        pharmacyID INT NOT NULL,
         name VARCHAR(20) NOT NULL,
         address VARCHAR(30) NOT NULL,
-        phone VARCHAR(20) NOT NULL
+        phone VARCHAR(20) NOT NULL,
+        PRIMARY KEY pharmacyID
     );
 
 CREATE TABLE
     TestResults (
-        resultID INT PRIMARY KEY,
+        resultID INT AUTO_INCREMENT NOT NULL,
         patientMRN INT NOT NULL,
         staffEIN INT NOT NULL,
         testID INT NOT NULL,
         result TEXT NOT NULL,
+        PRIMARY KEY (resultID),
         FOREIGN KEY (patientMRN) REFERENCES Patient (MRN),
         FOREIGN KEY (staffEIN) REFERENCES Staff (EIN),
         FOREIGN KEY (testID) REFERENCES Test (testID)
@@ -115,13 +120,15 @@ CREATE TABLE
 
 CREATE TABLE
     Test (
-        testID INT PRIMARY KEY,
+        testID INT AUTO_INCREMENT NOT NULL,
         name VARCHAR(20) NOT NULL,
-        purpose TEXT
+        purpose TEXT,
+        PRIMARY KEY testID
     );
 
 CREATE TABLE
     Medication (
-        medicationID INT PRIMARY KEY,
-        name VARCHAR(20) NOT NULL
+        medicationID INT,
+        name VARCHAR(20) NOT NULL,
+        PRIMARY KEY medicationID
     );
