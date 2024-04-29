@@ -1,0 +1,1 @@
+export MYSQL_DATABASE=OptiChart

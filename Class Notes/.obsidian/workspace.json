@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CSCI 463 Notes/2 Software Engineering & Software Life Cycle Developments.md",
+                "file": "CSCI 455 Notes/Chapter 8.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "CSCI 463 Notes/2 Software Engineering & Software Life Cycle Developments.md",
+                "file": "CSCI 455 Notes/Chapter 8.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "CSCI 463 Notes/2 Software Engineering & Software Life Cycle Developments.md",
+                "file": "CSCI 455 Notes/Chapter 8.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "CSCI 463 Notes/2 Software Engineering & Software Life Cycle Developments.md"
+                "file": "CSCI 455 Notes/Chapter 8.md"
               }
             }
           }
@@ -146,28 +146,39 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "bcaae266c346fac6",
+  "active": "0fc3439a6d9a2eb0",
   "lastOpenFiles": [
-    "CSCI 463 Notes/1 Introduction to Software & Software Engineering.md",
-    "CSCI 455 Notes/2 Data Models and Data Abstractions.md",
+    "CSCI 455 Notes/Chapter 7.md",
     "CSCI 455 Notes/5 The relational data model, relational constraints.md",
-    "CSCI 455 Notes/Images/Pasted image 20240409124403.png",
-    "CSCI 455 Notes/Images/Pasted image 20240409124350.png",
-    "CSCI 455 Notes/Images/Pasted image 20240409123040.png",
     "CSCI 455 Notes/3 Mapping ER to the Relational Table.md",
-    "CSCI 455 Notes/Images/Pasted image 20240408140231.png",
-    "CSCI 455 Notes/Images/Pasted image 20240408140227.png",
-    "CSCI 455 Notes/Images/Pasted image 20240408140110.png",
-    "CSCI 455 Notes/Images/Pasted image 20240408140105.png",
-    "CSCI 455 Notes/Images/Pasted image 20240408130748.png",
-    "CSCI 455 Notes/Images/Pasted image 20240408125524.png",
-    "CSCI 455 Notes/Images/Pasted image 20240408124706.png",
     "CSCI 455 Notes/3 Data Modeling Using the ERD.md",
+    "CSCI 455 Notes/2 Data Models and Data Abstractions.md",
     "CSCI 455 Notes/Chapter 8.md",
     "CSCI 455 Notes/Term Project.md",
-    "CSCI 455 Notes/Chapter 7.md",
-    "CSCI 455 Notes/1.md",
+    "CSCI 463 Notes/4 Requirements Engineering.md",
+    "CSCI 463 Notes/1 Introduction to Software & Software Engineering.md",
     "CSCI 463 Notes/2 Software Engineering & Software Life Cycle Developments.md",
+    "CSCI 463 Notes/3 Planning and management of projects.md",
+    "CSCI 463 Notes/Images/Pasted image 20240416133851.png",
+    "CSCI 463 Notes/Images/Pasted image 20240416133250.png",
+    "CSCI 463 Notes/Images/Pasted image 20240416114418.png",
+    "CSCI 463 Notes/Images/Pasted image 20240416113356.png",
+    "CSCI 463 Notes/Images/Pasted image 20240416001441.png",
+    "CSCI 463 Notes/Images/Pasted image 20240416000258.png",
+    "CSCI 463 Notes/Images/Pasted image 20240415235821.png",
+    "CSCI 463 Notes/Images/Pasted image 20240415130013.png",
+    "CSCI 463 Notes/Images/Pasted image 20240415124148.png",
+    "CSCI 463 Notes/Images/Pasted image 20240415123927.png",
+    "FP's^6ea0e6.md",
+    "Screenshot 2024-01-11 at 11.35.39 AM.png.md",
+    "CSCI 451 Notes/Chapter 10.md",
+    "CSCI 451 Notes/Chapter 11.md",
+    "CSCI 451 Notes/Chapter 17.md",
+    "CSCI 451 Notes/Chapter 07.md",
+    "CSCI 435 Notes/10-31-23.md",
+    "CSCI 455 Notes/1.md",
+    "CSCI 451 Notes/Chapter 09.md",
+    "CSCI 451 Notes/Chapter 08.md",
     "CSCI 463 Notes/Class Notes.md",
     "CSCI 463 Notes/Images",
     "Untitled.canvas",
@@ -175,16 +186,9 @@
     "CSCI 455 Notes/Homework",
     "CSCI 463 Notes",
     "CSCI 455 Notes/Images",
-    "CSCI 451 Notes/Chapter 11.md",
     "CSCI 455 Notes",
-    "CSCI 451 Notes/Chapter 17.md",
     "CSCI 451 Notes/Chapter 14.md",
-    "CSCI 451 Notes/Chapter 10.md",
-    "CSCI 435 Notes/10-31-23.md",
-    "CSCI 451 Notes/Chapter 09.md",
     "CSCI 435 Notes",
-    "CSCI 451 Notes/Chapter 08.md",
-    "CSCI 451 Notes/Chapter 07.md",
     "CSCI 451 Notes/Images",
     "CSCI 363 Notes/Term Project.md",
     "CSCI 363 Notes"
