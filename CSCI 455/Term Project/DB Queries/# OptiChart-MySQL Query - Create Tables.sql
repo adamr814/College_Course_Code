@@ -10,9 +10,9 @@ use OptiChart;
 CREATE TABLE
     Patient (
         MRN INT NOT NULL,
-        lastName VARCHAR(20) NOT NULL,
-        firstName VARCHAR(20) NOT NULL,
-        username VARCHAR(20) NOT NULL UNIQUE, -- Ensures unique usernames
+        lastName VARCHAR(30) NOT NULL,
+        firstName VARCHAR(30) NOT NULL,
+        username VARCHAR(30) NOT NULL UNIQUE, -- Ensures unique usernames
         password VARCHAR(20) NOT NULL,
         DOB DATE NOT NULL,
         gender CHAR(1) NOT NULL CHECK (gender IN ('M', 'F')),
@@ -26,13 +26,27 @@ CREATE TABLE
 CREATE TABLE
     Staff (
         EIN INT NOT NULL,
-        lastName VARCHAR(20) NOT NULL,
-        firstName VARCHAR(20) NOT NULL,
-        username VARCHAR(20) NOT NULL UNIQUE, -- Ensures unique usernames
+        lastName VARCHAR(30) NOT NULL,
+        firstName VARCHAR(30) NOT NULL,
+        username VARCHAR(30) NOT NULL UNIQUE, -- Ensures unique usernames
         password VARCHAR(20) NOT NULL,
         role VARCHAR(10) NOT NULL CHECK (role IN ('Physician', 'Assistant', 'Admin')),
-        email VARCHAR(20) NOT NULL UNIQUE, -- Ensures unique email addresses
+        email VARCHAR(30) NOT NULL UNIQUE, -- Ensures unique email addresses
         PRIMARY KEY (EIN)
+    );
+
+CREATE TABLE
+    Appointment (
+        apptID INT AUTO_INCREMENT NOT NULL,
+        date DATE NOT NULL,
+        time TIME NOT NULL,
+        reason TEXT,
+        room VARCHAR(5),
+        patientMRN INT NOT NULL,
+        staffEIN INT NOT NULL,
+        PRIMARY KEY (apptID),
+        FOREIGN KEY (patientMRN) REFERENCES Patient (MRN),
+        FOREIGN KEY (staffEIN) REFERENCES Staff (EIN)
     );
 
 CREATE TABLE
@@ -53,20 +67,6 @@ CREATE TABLE
         PRIMARY KEY (visitID),
         FOREIGN KEY (staffEIN) REFERENCES Staff (EIN),
         FOREIGN KEY (apptID) REFERENCES Appointment (apptID)
-    );
-
-CREATE TABLE
-    Appointment (
-        apptID INT AUTO_INCREMENT NOT NULL,
-        date DATE NOT NULL,
-        time TIME NOT NULL,
-        reason TEXT,
-        room VARCHAR(5),
-        patientMRN INT NOT NULL,
-        staffEIN INT NOT NULL,
-        PRIMARY KEY (apptID),
-        FOREIGN KEY (patientMRN) REFERENCES Patient (MRN),
-        FOREIGN KEY (staffEIN) REFERENCES Staff (EIN)
     );
 
 CREATE TABLE
