@@ -18,8 +18,8 @@ Folder List
 | [CSCI 266] | Tools & Techniques of Computing | Spring 2023 |
 | [CSCI 265] | Intro to Programming Languages | Spring 2023 |
 | [CSCI 242] | Algorithms & Data Structures | Fall 2022 |
-| [CSCI 161] | Intro to Coding 2 | Spring 2021 |
-| [CSCI 160] | Intro to Coding 1 | Fall 2020 |
+| [CSCI 161] | Intro to Programming II | Spring 2021 |
+| [CSCI 160] | Intro to Programming I | Fall 2020 |
 | [ME 200] | Engineering Programming |  Spring 2020 |
 
 
